@@ -1,0 +1,293 @@
+/* ── Polarise design tokens ──────────────────────────────────── */
+:root {
+  --pol-beige:       #FAF5E2;
+  --pol-beige-edge:  #e0d8be;
+  --pol-blue:        #3B9AB2;
+  --pol-blue-light:  #78B7C5;
+  --pol-red:         #E76962;
+  --pol-grey:        #808080;
+  --pol-text:        #4a4a4a;
+
+  /* Material token overrides */
+  --md-primary-fg-color:        var(--pol-beige);
+  --md-primary-fg-color--light: var(--pol-beige);
+  --md-primary-fg-color--dark:  var(--pol-beige);
+  --md-primary-bg-color:        #4a4a4a;
+  --md-accent-fg-color:         var(--pol-red);
+  --md-header-height:           56px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER — single unified white band: logo | tabs | search
+   ═══════════════════════════════════════════════════════════════ */
+.md-header {
+  background: #ffffff !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Suppress Material's scroll-triggered shadow */
+.md-header[data-md-state="shadow"] {
+  box-shadow: none !important;
+}
+
+/* Hide site name text (logo image is enough) */
+.md-header__title { display: none; }
+
+/* Logo — sized close to band height */
+.md-header__button.md-logo {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.md-header__button.md-logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+  border: none;
+  box-shadow: none;
+}
+
+/* Icons */
+.md-header__button        { color: #666666 !important; }
+.md-header__button:hover  { color: var(--pol-blue) !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV TABS — flex-1 child of .md-header__inner
+   Sits between logo and search in one unified row
+   ═══════════════════════════════════════════════════════════════ */
+.md-tabs {
+  flex: 1;
+  background: transparent;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+}
+
+.md-tabs__list {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.md-tabs__link {
+  color: var(--pol-text) !important;
+  opacity: 1 !important;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.025em;
+  transition: color 0.15s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+/* Underline indicator — slides in on hover / active */
+.md-tabs__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+  right: 0.5rem;
+  height: 2px;
+  background: var(--pol-blue);
+  transform: scaleX(0);
+  transition: transform 0.18s ease;
+}
+
+.md-tabs__link:hover::after,
+.md-tabs__link--active::after  { transform: scaleX(1); }
+
+.md-tabs__link:hover           { color: var(--pol-blue) !important; opacity: 1 !important; }
+.md-tabs__link--active         { color: var(--pol-blue) !important; }
+.md-tabs__indicator            { display: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   SEARCH
+   ═══════════════════════════════════════════════════════════════ */
+.md-search__form {
+  background: #ffffff !important;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  height: 28px;
+}
+
+.md-search__input {
+  background: transparent !important;
+  color: var(--pol-text) !important;
+}
+.md-search__input::placeholder { color: var(--pol-grey); }
+.md-search__icon               { color: var(--pol-grey) !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   LEFT NAV SIDEBAR
+   ═══════════════════════════════════════════════════════════════ */
+.md-sidebar--primary {
+  top: 0 !important;
+  max-height: 100vh !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOME PAGE HERO — 3-pane grid
+   ═══════════════════════════════════════════════════════════════ */
+.pol-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.pol-hero-pane {
+  overflow-x: auto;
+}
+
+.pol-hero-label {
+  text-align: center;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--pol-grey);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SNIPPET WRAPPER — isolates embedded table CSS from MkDocs Material
+   ═══════════════════════════════════════════════════════════════ */
+.pol-snippet {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTENT WIDTH — widen from Material default 61rem
+   ═══════════════════════════════════════════════════════════════ */
+.md-grid {
+  max-width: 75rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — below 1220px hamburger kicks in, restore defaults
+   ═══════════════════════════════════════════════════════════════ */
+@media screen and (max-width: 76.25em) {
+  .md-header {
+    background: #ffffff !important;
+  }
+
+  .md-tabs {
+    display: none;
+  }
+
+  .md-sidebar--primary {
+    top: var(--md-header-height) !important;
+    max-height: calc(100vh - var(--md-header-height)) !important;
+  }
+
+  .pol-hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COLOR REFERENCE PAGE — scoped styles for color swatches and
+   colormap bars. CSS lives here (not inline) so no <style> tag
+   appears inside the page content and disrupts the layout.
+   ═══════════════════════════════════════════════════════════════ */
+.pol-color-ref .attribution {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.pol-color-ref .attribution h3 { margin-top: 0; font-size: 16px; }
+.pol-color-ref .attribution ul  { margin: 10px 0; padding-left: 20px; }
+.pol-color-ref .attribution li  { margin: 8px 0; }
+.pol-color-ref .attribution a   { color: #0066cc; text-decoration: none; }
+.pol-color-ref .attribution a:hover { text-decoration: underline; }
+
+.pol-color-ref .color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.pol-color-ref .color-item  { text-align: center; font-size: 12px; }
+.pol-color-ref .color-swatch {
+  width: 60px; height: 60px;
+  margin: 0 auto 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.pol-color-ref .color-name { font-weight: 500; margin-bottom: 2px; color: #333; }
+.pol-color-ref .color-hex  { color: #888; font-family: "SF Mono","Monaco","Courier New",monospace; font-size: 11px; }
+
+.pol-color-ref .colormap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.pol-color-ref .colormap      { margin-bottom: 12px; }
+.pol-color-ref .colormap-name { font-weight: 500; margin-bottom: 8px; font-size: 14px; color: #333; }
+.pol-color-ref .colormap-bar  {
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.pol-color-ref .category-description {
+  color: #666; font-size: 13px; font-style: italic;
+  margin-top: -8px; margin-bottom: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   API PAGES — function signature blockquotes & table parameters
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Function signature line: p > strong > code → bold, no grey pill */
+.md-typeset p > strong > code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #006699;
+}
+
+/* Parameter list items — smaller font */
+.md-typeset ul li {
+  font-size: 0.8rem;
+}
+
+/* Param names inside list: li > strong > code → inherit list size, no grey pill */
+.md-typeset li > strong > code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-weight: 700;
+  font-size: inherit;
+  color: #000000;
+}
+
+/* Inline code in table cells → no grey pill */
+.md-typeset table code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+  color: var(--pol-text);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PAGE LINKS & SIDEBAR ACTIVE ITEM
+   ═══════════════════════════════════════════════════════════════ */
+.md-typeset a               { color: var(--pol-blue); }
+.md-typeset a:hover         { color: var(--pol-blue-light); }
+.md-nav__link--active       { color: var(--pol-red) !important; }

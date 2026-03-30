@@ -1,0 +1,2554 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Beautiful styled Polars DataFrames">
+      
+      
+      
+      
+        <link rel="prev" href="../formatting/">
+      
+      
+        <link rel="next" href="../display_export/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/Logo2.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Fashion Presets - Polarise</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fashion-presets" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+
+    
+    <a href="../.."
+       title="Polarise"
+       class="md-header__button md-logo"
+       aria-label="Polarise"
+       data-md-component="logo">
+      
+  <img src="../../assets/logosimplelong.png" alt="logo">
+
+    </a>
+
+    
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    
+    <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+      <ul class="md-tabs__list">
+        
+          
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting_started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+        
+          
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/heatmap/" class="md-tabs__link">
+          
+  
+  
+  Gallery
+
+        </a>
+      </li>
+    
+  
+
+        
+          
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial
+
+      </a>
+    </li>
+  
+
+        
+          
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../colors/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Colors & Colormaps
+
+      </a>
+    </li>
+  
+
+        
+          
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../highlighting/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+        
+      </ul>
+    </nav>
+
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </nav>
+</header>
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Polarise" class="md-nav__button md-logo" aria-label="Polarise" data-md-component="logo">
+      
+  <img src="../../assets/logosimplelong.png" alt="logo">
+
+    </a>
+    Polarise
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Gallery
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/heatmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heatmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Correlation Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/finance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Big Tech Finance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/llm_benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/education/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PISA Score
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/climate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temperature Anomaly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/air_quality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Air Quality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/wellbeing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wellbeing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../colors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Colors & Colormaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../highlighting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Highlighting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gradients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_bars/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Bars
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formatting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formatting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fashion Presets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../display_export/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Display & Export
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="fashion-presets">Fashion Presets</h1>
+<p>Fashion presets control the overall table appearance: borders, spacing, fonts, and background.
+Apply one fashion per table — the last call wins.</p>
+<p>Most fashion methods take no parameters. The exception is <code>fashion_zebra</code>, which accepts optional row colours — see below. All return a new <code>Styler</code>.</p>
+<hr />
+<p><a id="fashion_grid"></a></p>
+<p><strong><code>fashion_grid()</code></strong></p>
+<p>Clean white table with visible grid lines. Excel-like appearance. Good default for data exploration.</p>
+<pre><code class="language-python">df.style().gradient(&quot;Math&quot;, cmap=&quot;blues_2&quot;).fashion_grid().show()
+</code></pre>
+<style>
+.pseb4ae11b .pl-table {
+    border: 1px solid #b3b3b3;
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    background-color: white;
+}
+.pseb4ae11b .pl-table th {
+    border: 1px solid #b3b3b3;
+    background-color: white;
+    font-weight: 600;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.pseb4ae11b .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.pseb4ae11b .pl-table td {
+    border: 1px solid #b3b3b3;
+    padding: 4px 8px;
+    background-color: white;
+}
+.pseb4ae11b .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+/* Numeric alignment (high-value, low-noise) */
+.pseb4ae11b .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* === Warning box === */
+.pseb4ae11b .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.pseb4ae11b .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.pseb4ae11b .pl-bar::before,
+.pseb4ae11b .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.pseb4ae11b .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.pseb4ae11b .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.pseb4ae11b .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.pseb4ae11b .pl-container {
+    display: inline-block;
+}
+.pseb4ae11b .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.pseb4ae11b .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.pseb4ae11b .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.pseb4ae11b .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.pseb4ae11b .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet pseb4ae11b"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+<hr />
+<p><a id="fashion_zebra"></a></p>
+<p><strong><code>fashion_zebra(fill1=None, fill2=None)</code></strong></p>
+<p>Alternating row colours, no grid lines. Improves readability for wide tables.</p>
+<ul>
+<li><strong><code>fill1</code></strong> <code>str | None</code>, default <code>"white"</code> — Colour for odd rows</li>
+<li><strong><code>fill2</code></strong> <code>str | None</code>, default <code>"#f2f2f2"</code> — Colour for even rows</li>
+</ul>
+<pre><code class="language-python">df.style().gradient(&quot;Math&quot;, cmap=&quot;blues_2&quot;).fashion_zebra().show()
+</code></pre>
+<style>
+.psebde68be .pl-table {
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+.psebde68be .pl-table th {
+    background-color: white;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.psebde68be .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.psebde68be .pl-table td {
+    border: none;
+    padding: 4px 8px;
+}
+.psebde68be .pl-table tbody tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+.psebde68be .pl-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.psebde68be .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+
+/* Numeric alignment */
+.psebde68be .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.psebde68be .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.psebde68be .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 8em;
+}
+
+.psebde68be .pl-bar::before,
+.psebde68be .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.psebde68be .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.psebde68be .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.psebde68be .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.psebde68be .pl-container {
+    display: inline-block;
+}
+.psebde68be .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.psebde68be .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.psebde68be .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.psebde68be .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.psebde68be .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet psebde68be"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+<pre><code class="language-python">df.style().gradient(&quot;Math&quot;, cmap=&quot;blues_2&quot;).fashion_zebra(fill1=&quot;white&quot;, fill2=&quot;#e8f4f8&quot;).show()
+</code></pre>
+<style>
+.psaaae4c37 .pl-table {
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+.psaaae4c37 .pl-table th {
+    background-color: white;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.psaaae4c37 .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.psaaae4c37 .pl-table td {
+    border: none;
+    padding: 4px 8px;
+}
+.psaaae4c37 .pl-table tbody tr:nth-child(odd) {
+    background-color: #FFFFFF;
+}
+.psaaae4c37 .pl-table tbody tr:nth-child(even) {
+    background-color: #e8f4f8;
+}
+.psaaae4c37 .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+
+/* Numeric alignment */
+.psaaae4c37 .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.psaaae4c37 .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.psaaae4c37 .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 8em;
+}
+
+.psaaae4c37 .pl-bar::before,
+.psaaae4c37 .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.psaaae4c37 .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.psaaae4c37 .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.psaaae4c37 .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.psaaae4c37 .pl-container {
+    display: inline-block;
+}
+.psaaae4c37 .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.psaaae4c37 .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.psaaae4c37 .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.psaaae4c37 .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.psaaae4c37 .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet psaaae4c37"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+<hr />
+<p><a id="fashion_raw"></a></p>
+<p><strong><code>fashion_raw()</code></strong></p>
+<p>Minimal styling that mimics Polars' default print output. No background colours or borders.</p>
+<pre><code class="language-python">df.style().gradient(&quot;Math&quot;).fashion_raw().show()
+</code></pre>
+<style>
+.psa9fa5ccc .pl-table {
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    background-color: white;
+}
+.psa9fa5ccc .pl-table th {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: white;
+    font-weight: normal;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.psa9fa5ccc .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.psa9fa5ccc .pl-table td {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    padding: 4px 8px;
+    background-color: white;
+    font-weight: normal;
+}
+.psa9fa5ccc .pl-table tbody tr:last-child td {
+    border-bottom: 1px solid black;
+}
+
+/* Numeric alignment */
+.psa9fa5ccc .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.psa9fa5ccc .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.psa9fa5ccc .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.psa9fa5ccc .pl-bar::before,
+.psa9fa5ccc .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.psa9fa5ccc .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.psa9fa5ccc .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.psa9fa5ccc .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.psa9fa5ccc .pl-container {
+    display: inline-block;
+}
+.psa9fa5ccc .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.psa9fa5ccc .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.psa9fa5ccc .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.psa9fa5ccc .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.psa9fa5ccc .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet psa9fa5ccc"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+<hr />
+<p><a id="fashion_scientific"></a></p>
+<p><strong><code>fashion_scientific()</code></strong></p>
+<p>Publication-style booktabs table: top/bottom rules, mid-rule below header, no vertical lines.
+Pair with <code>.caption()</code> for a proper figure caption.</p>
+<pre><code class="language-python">df.style().gradient(&quot;Math&quot;).fashion_scientific().show()
+</code></pre>
+<style>
+/* === Base table === */
+.ps68efe44f .pl-table {
+    border-collapse: collapse;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 13px;
+    background-color: white;
+
+    /* booktabs-style outer rules */
+    border-top: 1px solid black;      /* \\toprule */
+    border-bottom: 1px solid black;   /* \\bottomrule */
+}
+
+/* === Header === */
+.ps68efe44f .pl-table thead tr {
+    border-bottom: 2px solid black; /* \\midrule (stronger as requested) */
+}
+
+.ps68efe44f .pl-table th {
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+/* Right-align headers for columns with bars */
+.ps68efe44f .pl-table th.pl-bar-col {
+    text-align: right;
+}
+
+/* === Body === */
+.ps68efe44f .pl-table td {
+    border: none;
+    padding: 6px 12px;
+    background-color: white;
+    vertical-align: top;
+}
+
+/* Emphasize first column (row labels / variables) */
+.ps68efe44f .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+
+/* Numeric alignment (high-value, low-noise) */
+.ps68efe44f .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* === Warning box === */
+.ps68efe44f .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* === Polars Styler: signed bars (scientific, subtle) === */
+.ps68efe44f .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 8em;
+    /* Remove background to avoid white column issue */
+}
+
+/* bar layers */
+.ps68efe44f .pl-bar::before,
+.ps68efe44f .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.ps68efe44f .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 100%);
+    background-color: var(--bar-neg-color, #b55a5a);
+    opacity: 0.85;
+}
+
+/* positive bar (right of zero) */
+.ps68efe44f .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 100%);
+    background-color: var(--bar-color, #4f81bd);
+    opacity: 0.85;
+}
+
+/* value text above bars - RIGHT ALIGNED */
+.ps68efe44f .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.ps68efe44f .pl-container {
+    display: inline-block;
+}
+.ps68efe44f .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.ps68efe44f .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.ps68efe44f .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.ps68efe44f .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.ps68efe44f .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet ps68efe44f"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+<hr />
+<p><a id="fashion_minimal"></a></p>
+<p><strong><code>fashion_minimal()</code></strong></p>
+<p>Clean, borderless table with subtle header styling. Good for dashboards and web embedding.</p>
+<pre><code class="language-python">df.style().gradient(&quot;Math&quot;).fashion_minimal().show()
+</code></pre>
+<style>
+.psd11d7d10 .pl-table {
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    background-color: white;
+}
+.psd11d7d10 .pl-table th {
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    border-top: none;
+    border-bottom: none;
+    background-color: #f2f2f2;
+    font-weight: 600;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.psd11d7d10 .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.psd11d7d10 .pl-table td {
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    border-top: none;
+    border-bottom: none;
+    padding: 4px 8px;
+    background-color: white;
+}
+.psd11d7d10 .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+
+/* Numeric alignment */
+.psd11d7d10 .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.psd11d7d10 .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.psd11d7d10 .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 8em;
+}
+
+.psd11d7d10 .pl-bar::before,
+.psd11d7d10 .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.psd11d7d10 .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.psd11d7d10 .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.psd11d7d10 .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.psd11d7d10 .pl-container {
+    display: inline-block;
+}
+.psd11d7d10 .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.psd11d7d10 .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.psd11d7d10 .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.psd11d7d10 .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.psd11d7d10 .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet psd11d7d10"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+<hr />
+<p><a id="fashion_compact"></a></p>
+<p><strong><code>fashion_compact()</code></strong></p>
+<p>Tight row spacing to display more data in less space. Useful for dense numeric tables.</p>
+<pre><code class="language-python">df.style().gradient(&quot;Math&quot;).fashion_compact().show()
+</code></pre>
+<style>
+.psd9225876 .pl-table {
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    background-color: white;
+}
+.psd9225876 .pl-table th {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: white;
+    font-weight: normal;
+    padding: 3px 6px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.psd9225876 .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.psd9225876 .pl-table td {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    padding: 2px 6px;
+    background-color: white;
+    font-weight: normal;
+}
+.psd9225876 .pl-table tbody tr:last-child td {
+    border-bottom: 1px solid black;
+}
+
+/* Numeric alignment */
+.psd9225876 .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.psd9225876 .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 11px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.psd9225876 .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 6em;
+}
+
+.psd9225876 .pl-bar::before,
+.psd9225876 .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.psd9225876 .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.psd9225876 .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.psd9225876 .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.psd9225876 .pl-container {
+    display: inline-block;
+}
+.psd9225876 .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.psd9225876 .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.psd9225876 .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.psd9225876 .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.psd9225876 .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet psd9225876"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+<hr />
+<p><a id="fashion_presentation"></a></p>
+<p><strong><code>fashion_presentation()</code></strong></p>
+<p>Spacious layout with large fonts and high contrast. Designed for slides and presentations.</p>
+<pre><code class="language-python">df.style().gradient(&quot;Math&quot;).fashion_presentation().show()
+</code></pre>
+<style>
+.ps24c2c11f .pl-table {
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    background-color: white;
+}
+.ps24c2c11f .pl-table th {
+    border-left: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    border-top: none;
+    border-bottom: none;
+    background-color: #f2f2f2;
+    font-weight: 600;
+    padding: 10px 14px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.ps24c2c11f .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.ps24c2c11f .pl-table td {
+    border-left: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    border-top: none;
+    border-bottom: none;
+    padding: 8px 12px;
+    background-color: white;
+}
+.ps24c2c11f .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+
+/* Numeric alignment */
+.ps24c2c11f .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.ps24c2c11f .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.ps24c2c11f .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 10em;
+}
+
+.ps24c2c11f .pl-bar::before,
+.ps24c2c11f .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.ps24c2c11f .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.ps24c2c11f .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.ps24c2c11f .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.ps24c2c11f .pl-container {
+    display: inline-block;
+}
+.ps24c2c11f .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.ps24c2c11f .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.ps24c2c11f .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.ps24c2c11f .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.ps24c2c11f .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet ps24c2c11f"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 Eric Gayer
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

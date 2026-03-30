@@ -1,0 +1,176 @@
+# Display & Export
+
+---
+
+## title
+
+> `title(title=None, subtitle=None)`
+
+Add a title and optional subtitle above the table.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `title` | str \| None | `None` | Main title text |
+| `subtitle` | str \| None | `None` | Subtitle text (smaller, below title) |
+
+```python
+df.style().title("Big Tech Financials", subtitle="FY 2023").show()
+```
+
+{{ read_html('snippets/api_title_ex1.html') }}
+
+---
+
+## footnote
+
+> `footnote(text)`
+
+Add footnote text below the table (smaller font, muted colour).
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `text` | str | — | Footnote text |
+
+```python
+df.style().footnote("Source: Company annual reports. Revenue in $B.").show()
+```
+
+{{ read_html('snippets/api_footnote_ex1.html') }}
+
+---
+
+## caption
+
+> `caption(text)`
+
+Add a caption above the table following scientific convention (e.g. "Table 1: ...").
+Use with `fashion_scientific()` for publication-style tables.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `text` | str | — | Caption text |
+
+```python
+df.style().caption("Table 1: Summary statistics").fashion_scientific().show()
+```
+
+{{ read_html('snippets/api_caption_ex1.html') }}
+
+---
+
+## show_idx
+
+> `show_idx()`
+
+Show the row index column (hidden by default).
+
+No parameters.
+
+```python
+df.style().show_idx().show()
+```
+
+{{ read_html('snippets/api_show_idx_ex1.html') }}
+
+---
+
+## hide_columns
+
+> `hide_columns()`
+
+Hide the column header row. The data remains fully visible; only the `<thead>` row is suppressed.
+
+No parameters.
+
+```python
+df.style().hide_columns().show()
+```
+
+{{ read_html('snippets/api_hide_columns_ex1.html') }}
+
+---
+
+## show_info
+
+> `show_info(name=None)`
+
+Display DataFrame metadata (name, shape) above the table.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `name` | str \| None | `None` | Optional dataset name to display |
+
+```python
+df.style().show_info(name="finance").show()
+```
+
+{{ read_html('snippets/api_show_info_ex1.html') }}
+
+---
+
+## to_html
+
+> `to_html(path=None) -> str`
+
+Generate the styled HTML table as a string, or save to a file.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `path` | str \| None | `None` | If provided, writes HTML to this file path |
+
+**Returns:** HTML string.
+
+```python
+# Get HTML string
+html = df.style().gradient("Revenue").to_html()
+
+# Save to file
+df.style().gradient("Revenue").to_html("output/report.html")
+```
+
+---
+
+## to_latex
+
+> `to_latex(caption=None, label=None) -> str`
+
+Export the table as a LaTeX `tabular` environment using booktabs formatting.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `caption` | str \| None | `None` | Table caption (placed in `\caption{}`) |
+| `label` | str \| None | `None` | Table label for cross-referencing (`\label{}`) |
+
+**Returns:** LaTeX string.
+
+```python
+latex = df.style().fashion_scientific().to_latex(
+    caption="Big Tech financials",
+    label="tab:finance"
+)
+print(latex)
+```
+
+> **Note:** Cell background colours are not exported to LaTeX. Only table structure and text formatting are preserved.
+
+---
+
+## show / view_html
+
+> `show() -> None`
+> `view_html(browser=None) -> str`
+
+`show()` opens the rendered HTML in the system default browser. It is an alias for `view_html()` with no arguments.
+
+`view_html(browser)` opens in a specific browser.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `browser` | str \| None | `None` | Browser to use: `"chrome"`, `"safari"`, `"orion"`, or `None` for default |
+
+```python
+df.style().gradient("Revenue").show()                   # default browser
+df.style().gradient("Revenue").view_html("chrome")      # Chrome specifically
+```
+
+> **Jupyter users:** You don't need `.show()`. polarise implements `_repr_html_()`, so styled tables render automatically when a `Styler` is the last expression in a cell.

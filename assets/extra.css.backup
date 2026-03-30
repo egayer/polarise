@@ -1,0 +1,182 @@
+/* ── Polarise design tokens ──────────────────────────────────── */
+:root {
+  --pol-beige:       #FAF5E2;
+  --pol-beige-edge:  #e0d8be;
+  --pol-blue:        #3B9AB2;
+  --pol-blue-light:  #78B7C5;
+  --pol-red:         #E76962;
+  --pol-grey:        #808080;
+  --pol-text:        #4a4a4a;
+
+  --pol-logo-w:      150px;
+  --pol-logo-h:      64px;
+
+  /* Material token overrides */
+  --md-primary-fg-color:        var(--pol-beige);
+  --md-primary-fg-color--light: var(--pol-beige);
+  --md-primary-fg-color--dark:  var(--pol-beige);
+  --md-primary-bg-color:        #4a4a4a;
+  --md-accent-fg-color:         var(--pol-red);
+  --md-header-height:           64px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER — beige band, natural height, overflow visible so search
+   can drop into the tabs row
+   ═══════════════════════════════════════════════════════════════ */
+.md-header {
+  background: var(--pol-beige) !important;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* Hide site name text (logo image is enough) */
+.md-header__title { display: none; }
+
+/* Bigger logo — header is cleaner now that search moved to tabs row */
+.md-header__button.md-logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* Icons */
+.md-header__button        { color: var(--pol-grey) !important; }
+.md-header__button:hover  { color: var(--pol-blue) !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV TABS — beige, matches header band
+   ═══════════════════════════════════════════════════════════════ */
+.md-tabs {
+  background: var(--pol-beige);
+  border-bottom: 1px solid var(--pol-beige-edge);
+}
+
+.md-tabs__link {
+  color: var(--pol-text) !important;
+  opacity: 1 !important;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.025em;
+  transition: color 0.15s ease;
+}
+
+.md-tabs__link:hover { color: var(--pol-blue) !important; opacity: 1 !important; }
+.md-tabs__link--active   { color: var(--pol-text) !important; }
+.md-tabs__indicator      { display: none; }
+
+/* Reserve right-side space for the search box */
+.md-tabs__list {
+  padding-right: 220px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SEARCH — moved to tabs row via absolute positioning
+   ═══════════════════════════════════════════════════════════════ */
+.md-search {
+  position: absolute;
+  top: var(--md-header-height);
+  right: 16px;
+  z-index: 999;
+}
+
+.md-search__form {
+  background: #ffffff !important;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  height: 28px;
+}
+
+.md-search__input {
+  background: transparent !important;
+  color: var(--pol-text) !important;
+}
+.md-search__input::placeholder { color: var(--pol-grey); }
+.md-search__icon               { color: var(--pol-grey) !important; }
+
+/* ═══════════════════════════════════════════════════════════════
+   LEFT NAV SIDEBAR
+   ═══════════════════════════════════════════════════════════════ */
+.md-sidebar--primary {
+  top: 0 !important;
+  max-height: 100vh !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOME PAGE HERO — 3-pane grid
+   ═══════════════════════════════════════════════════════════════ */
+.pol-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.pol-hero-pane {
+  overflow-x: auto;
+}
+
+.pol-hero-label {
+  text-align: center;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--pol-grey);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SNIPPET WRAPPER — isolates embedded table CSS from MkDocs Material
+   ═══════════════════════════════════════════════════════════════ */
+.pol-snippet {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — below 1220px the hamburger menu kicks in
+   ═══════════════════════════════════════════════════════════════ */
+@media screen and (max-width: 76.25em) {
+  .md-header {
+    padding-left: 0 !important;
+    background: var(--pol-beige) !important;
+    border-bottom: none !important;
+  }
+
+  /* Search back in the header, normal flow */
+  .md-search {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+  }
+
+  .md-tabs__list {
+    padding-right: 0;
+  }
+
+  /* Sidebar back to normal position */
+  .md-sidebar--primary {
+    top: var(--md-header-height) !important;
+    max-height: calc(100vh - var(--md-header-height)) !important;
+  }
+
+  /* Hero grid stacks to single column on narrow screens */
+  .pol-hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTENT WIDTH — widen from Material default 61rem
+   ═══════════════════════════════════════════════════════════════ */
+.md-grid {
+  max-width: 75rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PAGE LINKS & SIDEBAR ACTIVE ITEM
+   ═══════════════════════════════════════════════════════════════ */
+.md-typeset a               { color: var(--pol-blue); }
+.md-typeset a:hover         { color: var(--pol-blue-light); }
+.md-nav__link--active       { color: var(--pol-red) !important; }
