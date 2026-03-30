@@ -1,5 +1,9 @@
 # Polarise
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/egayer/polarise/master/polarise_docs/docs/assets/Logo2.png" alt="Polarise" height="150">
+</p>
+
 *Style your data to explore. Style your results to present.*
 
 **A Polars-native DataFrame styling tool for HTML visualization**
