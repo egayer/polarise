@@ -1,0 +1,190 @@
+<style>
+.pseb4ae11b .pl-table {
+    border: 1px solid #b3b3b3;
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    background-color: white;
+}
+.pseb4ae11b .pl-table th {
+    border: 1px solid #b3b3b3;
+    background-color: white;
+    font-weight: 600;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.pseb4ae11b .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.pseb4ae11b .pl-table td {
+    border: 1px solid #b3b3b3;
+    padding: 4px 8px;
+    background-color: white;
+}
+.pseb4ae11b .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+/* Numeric alignment (high-value, low-noise) */
+.pseb4ae11b .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* === Warning box === */
+.pseb4ae11b .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.pseb4ae11b .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.pseb4ae11b .pl-bar::before,
+.pseb4ae11b .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.pseb4ae11b .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.pseb4ae11b .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.pseb4ae11b .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.pseb4ae11b .pl-container {
+    display: inline-block;
+}
+.pseb4ae11b .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.pseb4ae11b .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.pseb4ae11b .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.pseb4ae11b .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.pseb4ae11b .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet pseb4ae11b"><div class="pl-container">
+<div class="pl-title">Pollutants Exceeding WHO Limits</div>
+<table class="pl-table">
+<thead><tr>
+<th>City</th>
+<th>PM2_5</th>
+<th>NO2</th>
+<th>O3</th>
+<th>AQI</th>
+<th>Change_vs_2015</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Paris</td>
+<td class="numeric">13.2</td>
+<td class="numeric">38.4</td>
+<td class="numeric">52.6</td>
+<td class="numeric">48</td>
+<td class="numeric">-5.2</td>
+</tr>
+<tr>
+<td>Berlin</td>
+<td class="numeric">11.8</td>
+<td class="numeric">26.1</td>
+<td class="numeric">48.2</td>
+<td class="numeric">42</td>
+<td class="numeric">-3.8</td>
+</tr>
+<tr>
+<td>Madrid</td>
+<td class="numeric">9.5</td>
+<td class="numeric">31.7</td>
+<td class="numeric">61.3</td>
+<td class="numeric">53</td>
+<td class="numeric">1.2</td>
+</tr>
+<tr>
+<td>Rome</td>
+<td class="numeric">15.7</td>
+<td class="numeric" style="background-color: #FFA500; color: #FFFFFF;">42.3</td>
+<td class="numeric">55.1</td>
+<td class="numeric">58</td>
+<td class="numeric">-2.1</td>
+</tr>
+<tr>
+<td>London</td>
+<td class="numeric">12.1</td>
+<td class="numeric">35.8</td>
+<td class="numeric">44.8</td>
+<td class="numeric">45</td>
+<td class="numeric">-4.5</td>
+</tr>
+</tbody>
+</table>
+<div class="pl-footnote">WHO limit: PM2.5 &lt; 25 μg/m³, NO2 &lt; 40 μg/m³</div>
+</div></div>

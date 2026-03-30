@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% import "partials/tabs-item.html" as item with context %}
+
+{% block header %}
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header') }}">
+
+    {# Logo — left #}
+    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
+       title="{{ config.site_name | e }}"
+       class="md-header__button md-logo"
+       aria-label="{{ config.site_name }}"
+       data-md-component="logo">
+      {% include "partials/logo.html" %}
+    </a>
+
+    {# Hamburger — mobile only #}
+    <label class="md-header__button md-icon" for="__drawer">
+      {% set icon = config.theme.icon.menu or "material/menu" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </label>
+
+    {# Nav tabs — flex-1 center, replaces the title slot #}
+    <nav class="md-tabs" aria-label="{{ lang.t('tabs') }}" data-md-component="tabs">
+      <ul class="md-tabs__list">
+        {% for nav_item in nav.items %}
+          {{ item.render(nav_item) }}
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {# Search — right #}
+    <label class="md-header__button md-icon" for="__search">
+      {% set icon = config.theme.icon.search or "material/magnify" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </label>
+    {% include "partials/search.html" %}
+
+  </nav>
+</header>
+{% endblock %}

@@ -1,0 +1,182 @@
+<style>
+.pseb4ae11b .pl-table {
+    border: 1px solid #b3b3b3;
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    background-color: white;
+}
+.pseb4ae11b .pl-table th {
+    border: 1px solid #b3b3b3;
+    background-color: white;
+    font-weight: 600;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.pseb4ae11b .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.pseb4ae11b .pl-table td {
+    border: 1px solid #b3b3b3;
+    padding: 4px 8px;
+    background-color: white;
+}
+.pseb4ae11b .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+/* Numeric alignment (high-value, low-noise) */
+.pseb4ae11b .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* === Warning box === */
+.pseb4ae11b .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.pseb4ae11b .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.pseb4ae11b .pl-bar::before,
+.pseb4ae11b .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.pseb4ae11b .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.pseb4ae11b .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.pseb4ae11b .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.pseb4ae11b .pl-container {
+    display: inline-block;
+}
+.pseb4ae11b .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.pseb4ae11b .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.pseb4ae11b .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.pseb4ae11b .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.pseb4ae11b .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet pseb4ae11b"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Company</th>
+<th class="pl-bar-col">Revenue</th>
+<th>Profit</th>
+<th>Growth</th>
+<th>Employees_k</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Apple</td>
+<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 66%, transparent 66%, transparent 100%);">383.3</td>
+<td class="numeric" style="background-color: #FFD700; color: #000000;">97.0</td>
+<td class="numeric">7.8</td>
+<td class="numeric">161</td>
+</tr>
+<tr>
+<td>Microsoft</td>
+<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 36%, transparent 36%, transparent 100%);">211.9</td>
+<td class="numeric">72.4</td>
+<td class="numeric">6.9</td>
+<td class="numeric">221</td>
+</tr>
+<tr>
+<td>Google</td>
+<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 53%, transparent 53%, transparent 100%);">307.4</td>
+<td class="numeric">73.8</td>
+<td class="numeric">8.7</td>
+<td class="numeric">182</td>
+</tr>
+<tr>
+<td>Amazon</td>
+<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 100%, transparent 100%, transparent 100%);">574.8</td>
+<td class="numeric">30.4</td>
+<td class="numeric">11.8</td>
+<td class="numeric">1541</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 23%, transparent 23%, transparent 100%);">134.9</td>
+<td class="numeric">39.1</td>
+<td class="numeric">16.4</td>
+<td class="numeric">67</td>
+</tr>
+</tbody>
+</table>
+</div></div>

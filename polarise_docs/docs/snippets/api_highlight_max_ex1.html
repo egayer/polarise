@@ -1,0 +1,188 @@
+<style>
+.psa9fa5ccc .pl-table {
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    background-color: white;
+}
+.psa9fa5ccc .pl-table th {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: white;
+    font-weight: normal;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+/* Right-align headers for columns with bars */
+.psa9fa5ccc .pl-table th.pl-bar-col {
+    text-align: right;
+}
+.psa9fa5ccc .pl-table td {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    padding: 4px 8px;
+    background-color: white;
+    font-weight: normal;
+}
+.psa9fa5ccc .pl-table tbody tr:last-child td {
+    border-bottom: 1px solid black;
+}
+
+/* Numeric alignment */
+.psa9fa5ccc .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.psa9fa5ccc .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* --- Polars Styler: signed bars --- */
+.psa9fa5ccc .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+}
+
+.psa9fa5ccc .pl-bar::before,
+.psa9fa5ccc .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.psa9fa5ccc .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 50%);
+    background-color: var(--bar-neg-color, indianred);
+}
+
+/* positive bar (right of zero) */
+.psa9fa5ccc .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 50%);
+    background-color: var(--bar-color, steelblue);
+}
+
+.psa9fa5ccc .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.psa9fa5ccc .pl-container {
+    display: inline-block;
+}
+.psa9fa5ccc .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.psa9fa5ccc .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.psa9fa5ccc .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.psa9fa5ccc .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.psa9fa5ccc .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet psa9fa5ccc"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Company</th>
+<th>Revenue</th>
+<th>Profit</th>
+<th>Growth</th>
+<th>Employees_k</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Apple</td>
+<td class="numeric">383.3</td>
+<td class="numeric">97.0</td>
+<td class="numeric">7.8</td>
+<td class="numeric">161</td>
+</tr>
+<tr>
+<td>Microsoft</td>
+<td class="numeric">211.9</td>
+<td class="numeric">72.4</td>
+<td class="numeric">6.9</td>
+<td class="numeric">221</td>
+</tr>
+<tr>
+<td>Google</td>
+<td class="numeric">307.4</td>
+<td class="numeric">73.8</td>
+<td class="numeric">8.7</td>
+<td class="numeric">182</td>
+</tr>
+<tr>
+<td>Amazon</td>
+<td class="numeric" style="background-color: #FFFF00; color: #000000;">574.8</td>
+<td class="numeric">30.4</td>
+<td class="numeric">11.8</td>
+<td class="numeric">1541</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td class="numeric">134.9</td>
+<td class="numeric">39.1</td>
+<td class="numeric">16.4</td>
+<td class="numeric">67</td>
+</tr>
+</tbody>
+</table>
+</div></div>

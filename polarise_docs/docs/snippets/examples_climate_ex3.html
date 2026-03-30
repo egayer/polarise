@@ -1,0 +1,226 @@
+<style>
+/* === Base table === */
+.ps68efe44f .pl-table {
+    border-collapse: collapse;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 13px;
+    background-color: white;
+
+    /* booktabs-style outer rules */
+    border-top: 1px solid black;      /* \\toprule */
+    border-bottom: 1px solid black;   /* \\bottomrule */
+}
+
+/* === Header === */
+.ps68efe44f .pl-table thead tr {
+    border-bottom: 2px solid black; /* \\midrule (stronger as requested) */
+}
+
+.ps68efe44f .pl-table th {
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+/* Right-align headers for columns with bars */
+.ps68efe44f .pl-table th.pl-bar-col {
+    text-align: right;
+}
+
+/* === Body === */
+.ps68efe44f .pl-table td {
+    border: none;
+    padding: 6px 12px;
+    background-color: white;
+    vertical-align: top;
+}
+
+/* Emphasize first column (row labels / variables) */
+.ps68efe44f .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+
+/* Numeric alignment (high-value, low-noise) */
+.ps68efe44f .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* === Warning box === */
+.ps68efe44f .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* === Polars Styler: signed bars (scientific, subtle) === */
+.ps68efe44f .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 8em;
+    /* Remove background to avoid white column issue */
+}
+
+/* bar layers */
+.ps68efe44f .pl-bar::before,
+.ps68efe44f .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.ps68efe44f .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 100%);
+    background-color: var(--bar-neg-color, #b55a5a);
+    opacity: 0.85;
+}
+
+/* positive bar (right of zero) */
+.ps68efe44f .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 100%);
+    background-color: var(--bar-color, #4f81bd);
+    opacity: 0.85;
+}
+
+/* value text above bars - RIGHT ALIGNED */
+.ps68efe44f .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.ps68efe44f .pl-container {
+    display: inline-block;
+}
+.ps68efe44f .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.ps68efe44f .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.ps68efe44f .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.ps68efe44f .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.ps68efe44f .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet ps68efe44f"><div class="pl-container">
+<div class="pl-caption">Table 2: Climate indicators exceeding critical thresholds</div>
+<table class="pl-table">
+<thead><tr>
+<th>Decade</th>
+<th>Temp_Anomaly</th>
+<th>CO2_ppm</th>
+<th>Sea_Level_mm</th>
+<th>Arctic_Ice_M_km2</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>1880s</td>
+<td class="numeric">-0.27</td>
+<td class="numeric">290</td>
+<td class="numeric">0</td>
+<td class="numeric">7.5</td>
+</tr>
+<tr>
+<td>1910s</td>
+<td class="numeric">-0.27</td>
+<td class="numeric">300</td>
+<td class="numeric">10</td>
+<td class="numeric">7.4</td>
+</tr>
+<tr>
+<td>1940s</td>
+<td class="numeric">0.05</td>
+<td class="numeric">310</td>
+<td class="numeric">30</td>
+<td class="numeric">7.3</td>
+</tr>
+<tr>
+<td>1970s</td>
+<td class="numeric">0.01</td>
+<td class="numeric">326</td>
+<td class="numeric">50</td>
+<td class="numeric">7.2</td>
+</tr>
+<tr>
+<td>1990s</td>
+<td class="numeric">0.33</td>
+<td class="numeric">354</td>
+<td class="numeric">90</td>
+<td class="numeric">6.8</td>
+</tr>
+<tr>
+<td>2000s</td>
+<td class="numeric">0.62</td>
+<td class="numeric">377</td>
+<td class="numeric">150</td>
+<td class="numeric">6.2</td>
+</tr>
+<tr>
+<td>2010s</td>
+<td class="numeric">0.93</td>
+<td class="numeric">395</td>
+<td class="numeric">210</td>
+<td class="numeric" style="background-color: #FF6347; color: #FFFFFF;">5.1</td>
+</tr>
+<tr>
+<td>2020s</td>
+<td class="numeric">1.17</td>
+<td class="numeric" style="background-color: #FFFF00; color: #000000;">417</td>
+<td class="numeric">250</td>
+<td class="numeric" style="background-color: #FF6347; color: #FFFFFF;">4.7</td>
+</tr>
+</tbody>
+</table>
+</div></div>

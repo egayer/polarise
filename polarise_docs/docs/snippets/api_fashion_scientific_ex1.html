@@ -1,0 +1,204 @@
+<style>
+/* === Base table === */
+.ps68efe44f .pl-table {
+    border-collapse: collapse;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 13px;
+    background-color: white;
+
+    /* booktabs-style outer rules */
+    border-top: 1px solid black;      /* \\toprule */
+    border-bottom: 1px solid black;   /* \\bottomrule */
+}
+
+/* === Header === */
+.ps68efe44f .pl-table thead tr {
+    border-bottom: 2px solid black; /* \\midrule (stronger as requested) */
+}
+
+.ps68efe44f .pl-table th {
+    border: none;
+    background-color: white;
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+/* Right-align headers for columns with bars */
+.ps68efe44f .pl-table th.pl-bar-col {
+    text-align: right;
+}
+
+/* === Body === */
+.ps68efe44f .pl-table td {
+    border: none;
+    padding: 6px 12px;
+    background-color: white;
+    vertical-align: top;
+}
+
+/* Emphasize first column (row labels / variables) */
+.ps68efe44f .pl-table tbody tr td:first-child {
+    font-weight: 600;
+}
+
+/* Numeric alignment (high-value, low-noise) */
+.ps68efe44f .pl-table td.numeric {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* === Warning box === */
+.ps68efe44f .pl-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+/* === Polars Styler: signed bars (scientific, subtle) === */
+.ps68efe44f .pl-bar {
+    position: relative;
+    overflow: hidden;
+    min-width: 8em;
+    /* Remove background to avoid white column issue */
+}
+
+/* bar layers */
+.ps68efe44f .pl-bar::before,
+.ps68efe44f .pl-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 0;
+}
+
+/* negative bar (left of zero) */
+.ps68efe44f .pl-bar::before {
+    right: 50%;
+    width: calc(var(--neg, 0) * 100%);
+    background-color: var(--bar-neg-color, #b55a5a);
+    opacity: 0.85;
+}
+
+/* positive bar (right of zero) */
+.ps68efe44f .pl-bar::after {
+    left: 50%;
+    width: calc(var(--pos, 0) * 100%);
+    background-color: var(--bar-color, #4f81bd);
+    opacity: 0.85;
+}
+
+/* value text above bars - RIGHT ALIGNED */
+.ps68efe44f .pl-bar > span {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: right;
+    padding-right: 4px;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.ps68efe44f .pl-container {
+    display: inline-block;
+}
+.ps68efe44f .pl-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+    text-align: left;
+}
+.ps68efe44f .pl-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: #666;
+    text-align: left;
+}
+.ps68efe44f .pl-info {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #555;
+    text-align: left;
+}
+.ps68efe44f .pl-caption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    color: #000;
+    text-align: left;
+}
+.ps68efe44f .pl-footnote {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+</style>
+<div class="pol-snippet ps68efe44f"><div class="pl-container">
+<table class="pl-table">
+<thead><tr>
+<th>Country</th>
+<th>Reading</th>
+<th>Math</th>
+<th>Science</th>
+<th>GDP_per_capita</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Estonia</td>
+<td class="numeric">511</td>
+<td class="numeric" style="background-color: #E1E1E1; color: #000000;">510</td>
+<td class="numeric">526</td>
+<td class="numeric">27.9</td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td class="numeric">516</td>
+<td class="numeric" style="background-color: #7781B7; color: #FFFFFF;">492</td>
+<td class="numeric">504</td>
+<td class="numeric">99.1</td>
+</tr>
+<tr>
+<td>Poland</td>
+<td class="numeric">489</td>
+<td class="numeric" style="background-color: #5A6AAD; color: #FFFFFF;">489</td>
+<td class="numeric">513</td>
+<td class="numeric">18.7</td>
+</tr>
+<tr>
+<td>Finland</td>
+<td class="numeric">490</td>
+<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">484</td>
+<td class="numeric">511</td>
+<td class="numeric">53.1</td>
+</tr>
+<tr>
+<td>Netherlands</td>
+<td class="numeric">459</td>
+<td class="numeric" style="background-color: #8089BA; color: #FFFFFF;">493</td>
+<td class="numeric">488</td>
+<td class="numeric">58.3</td>
+</tr>
+</tbody>
+</table>
+</div></div>

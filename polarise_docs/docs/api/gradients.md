@@ -1,0 +1,96 @@
+# Gradients
+
+Gradient methods map numeric values to colours along a colormap.
+See [Colors & Colormaps](../colors.md) for the full list of available `cmap` values.
+
+---
+
+<a id="gradient"></a>
+
+**`gradient(in_col, scope="column", cmap="viridis", color=False, exclude=None)`**
+
+Apply a sequential colour gradient. Values are normalised to [0, 1] then mapped to the colormap.
+
+- **`in_col`** `str | list | Expr` — Column(s) to apply to
+- **`scope`** `"column" | "table"`, default `"column"` — Normalise per column or across all selected columns
+- **`cmap`** `str`, default `"viridis"` — Colormap name (see Colors & Colormaps)
+- **`color`** `bool`, default `False` — If True, also colour the text using the colormap
+- **`exclude`** `str | list | None`, default `None` — Columns to exclude
+
+**Example:**
+
+```python
+df.style().gradient("Revenue", cmap="viridis").show()
+```
+
+{{ read_html('snippets/api_gradient_ex1.html') }}
+
+---
+
+<a id="gradient_divergent"></a>
+
+**`gradient_divergent(in_col, center, scope="column", cmap="RdBu", color=False, exclude=None)`**
+
+Apply a divergent colour gradient that splits at `center`.
+Values below `center` use the left half of the colormap; values above use the right half.
+
+- **`in_col`** `str | list | Expr` — Column(s) to apply to
+- **`center`** `float` — The neutral midpoint value
+- **`scope`** `"column" | "table"`, default `"column"` — Normalise per column or across all selected
+- **`cmap`** `str`, default `"RdBu"` — Divergent colormap name
+- **`color`** `bool`, default `False` — Also colour text using the colormap
+- **`exclude`** `str | list | None`, default `None` — Columns to exclude
+
+**Example:**
+
+```python
+df.style().gradient_divergent("Cost_per_1M", center=15.0, cmap="vik").show()
+```
+
+{{ read_html('snippets/api_gradient_divergent_ex1.html') }}
+
+---
+
+<a id="gradient_between"></a>
+
+**`gradient_between(in_col, low, high, scope="column", cmap="viridis", color=False, exclude=None)`**
+
+Apply a gradient only within a specified range. Values outside `[low, high]` receive no colour.
+
+- **`in_col`** `str | list | Expr` — Column(s) to apply to
+- **`low`** `float` — Lower bound of the colour range
+- **`high`** `float` — Upper bound of the colour range
+- **`scope`** `"column" | "table"`, default `"column"` — Normalise per column or globally
+- **`cmap`** `str`, default `"viridis"` — Colormap name
+- **`color`** `bool`, default `False` — Also colour text
+- **`exclude`** `str | list | None`, default `None` — Columns to exclude
+
+**Example:**
+
+```python
+df.style().gradient_between("Revenue", low=100.0, high=400.0, cmap="lapaz").show()
+```
+
+{{ read_html('snippets/api_gradient_between_ex1.html') }}
+
+---
+
+<a id="heat_map"></a>
+
+**`heat_map(in_col=pl.all(), cmap="viridis", color=False, exclude=None)`**
+
+Apply a gradient across all (or selected) numeric columns simultaneously with a shared scale.
+Convenience wrapper around `gradient(scope="table")`.
+
+- **`in_col`** `str | list | Expr`, default `pl.all()` — Column(s) to apply to (defaults to all numeric)
+- **`cmap`** `str`, default `"viridis"` — Colormap name
+- **`color`** `bool`, default `False` — Also colour text
+- **`exclude`** `str | list | None`, default `None` — Columns to exclude from `pl.all()`
+
+**Example:**
+
+```python
+df.select(["Revenue", "Profit", "Growth"]).style().heat_map().show()
+```
+
+{{ read_html('snippets/api_heat_map_ex1.html') }}

@@ -1,0 +1,53 @@
+site_name: Polarise
+site_description: Beautiful styled Polars DataFrames
+copyright: "© 2026 Eric Gayer"
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: assets/logosimplelong.png
+  favicon: assets/Logo2.png
+  palette:
+    scheme: default
+    primary: custom
+    accent: custom
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - content.code.copy
+
+extra_css:
+  - assets/extra.css
+
+plugins:
+  - search
+  - macros:
+      module_name: docs/main
+
+exclude_docs: |
+  snippets/
+  superpowers/
+
+nav:
+  - Getting Started: getting_started.md
+  - Gallery:
+    - Heatmap: examples/heatmap.md
+    - Correlation Matrix: examples/correlation.md
+    - Big Tech Finance: examples/finance.md
+    - LLM Benchmarks: examples/llm_benchmarks.md
+    - PISA Score: examples/education.md
+    - Temperature Anomaly: examples/climate.md
+    - Air Quality: examples/air_quality.md
+    - Wellbeing: examples/wellbeing.md
+  - Tutorial: tutorial.md
+  - Colors & Colormaps: colors.md
+  - API:
+    - Highlighting: api/highlighting.md
+    - Gradients: api/gradients.md
+    - Data Bars: api/data_bars.md
+    - Formatting: api/formatting.md
+    - Fashion Presets: api/fashion.md
+    - Display & Export: api/display_export.md
