@@ -16,6 +16,12 @@
 
 ---
 
+## Documentation
+
+Full documentation: https://egayer.github.io/polarise/
+
+---
+
 ## Installation
 
 ```bash
@@ -77,12 +83,6 @@ It started as a simple tool to explore Polars DataFrames visually, and grew into
 | Syntax | pandas-based | Table grammar | Polars expressions |
 | Complexity | Medium | High | Low |
 | Speed (iteration) | Medium | Slower | Fast |
-
----
-
-## Documentation
-
-Full documentation: https://egayer.github.io/polarise/
 
 ---
 
