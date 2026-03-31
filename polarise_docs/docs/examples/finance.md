@@ -6,7 +6,7 @@ Big Tech company financial data for FY 2023 — revenue, profit, growth rate, an
 import sys; sys.path.insert(0, "../")
 import polars as pl
 import polarise
-from examples.datasets import get_finance_data
+from polarise.datasets import get_finance_data
 df = get_finance_data()
 ```
 

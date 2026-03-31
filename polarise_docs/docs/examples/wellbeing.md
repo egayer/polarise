@@ -3,7 +3,7 @@
 National wellbeing indicators: life expectancy, healthcare spending, life satisfaction, and work hours.
 
 ```python
-from examples.datasets import get_wellbeing_data
+from polarise.datasets import get_wellbeing_data
 df = get_wellbeing_data()
 ```
 

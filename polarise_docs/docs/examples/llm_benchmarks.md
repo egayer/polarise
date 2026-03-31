@@ -3,7 +3,7 @@
 Performance metrics for leading large language models across standardised benchmarks.
 
 ```python
-from examples.datasets import get_llm_benchmarks
+from polarise.datasets import get_llm_benchmarks
 df = get_llm_benchmarks()
 ```
 

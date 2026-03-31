@@ -3,7 +3,7 @@
 OECD PISA 2022 scores measuring 15-year-olds' performance in reading, mathematics, and science.
 
 ```python
-from examples.datasets import get_education_data
+from polarise.datasets import get_education_data
 df = get_education_data()
 ```
 

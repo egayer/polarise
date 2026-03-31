@@ -33,4 +33,4 @@ where = ["."]
 include = ["polarise*"]
 
 [tool.setuptools.package-data]
-polarise = ["fashion/css/*.css"]
+polarise = ["fashion/css/*.css", "*.csv"]

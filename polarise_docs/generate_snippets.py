@@ -12,22 +12,13 @@ import os
 import re
 import hashlib
 
-# Add project root to path so we can import polarise and examples/datasets
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, ROOT)
-sys.path.insert(0, os.path.join(ROOT, "examples"))
 
 import datetime as dt
 import polars as pl
 import polarise  # noqa: F401 — registers .style() on pl.DataFrame
-
-# Import datasets module (it's a script, not a package)
-import importlib.util
-spec = importlib.util.spec_from_file_location(
-    "datasets", os.path.join(ROOT, "examples", "datasets.py")
-)
-datasets = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(datasets)
+from polarise import datasets
 
 OUT = os.path.join(os.path.dirname(__file__), "docs", "snippets")
 os.makedirs(OUT, exist_ok=True)

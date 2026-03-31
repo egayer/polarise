@@ -3,7 +3,7 @@
 Air quality metrics for major world cities: particulate matter, nitrogen dioxide, ozone, and AQI.
 
 ```python
-from examples.datasets import get_air_quality_data
+from polarise.datasets import get_air_quality_data
 df = get_air_quality_data()
 ```
 

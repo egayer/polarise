@@ -5,7 +5,7 @@ Monthly temperature statistics (average, max, min) across all months of the year
 **Columns:** Month (str), January → December (f64, °C)
 
 ```python
-from examples.datasets import get_temperature_stats_data
+from polarise.datasets import get_temperature_stats_data
 df = get_temperature_stats_data()
 ```
 

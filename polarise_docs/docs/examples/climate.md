@@ -3,7 +3,7 @@
 Global climate indicators by decade: temperature anomaly, CO₂ concentration, sea level rise, and Arctic ice extent.
 
 ```python
-from examples.datasets import get_climate_data
+from polarise.datasets import get_climate_data
 df = get_climate_data()
 ```
 

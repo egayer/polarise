@@ -5,7 +5,7 @@
 This example uses Fisher's Iris dataset: 150 samples across 3 species, with 4 numeric features (sepal/petal length and width).
 
 ```python
-from examples.datasets import get_iris_data
+from polarise.datasets import get_iris_data
 df = get_iris_data()
 
 corr_df = df[:, :-1].corr(label='features').with_columns(
