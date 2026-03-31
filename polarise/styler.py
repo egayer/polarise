@@ -1198,14 +1198,43 @@ class Styler:
                 cleanup_thread.start()
 
     def show(self) -> None:
-        """Generate HTML and open in default browser.
+        """Generate HTML and open in the system default browser.
 
-        Alias for view_html() for convenience.
+        Cross-platform: works on macOS, Linux (including Snap-packaged Firefox
+        on Ubuntu 22.04+), and Windows.
+
+        On Linux, the temp file is written to the home directory because
+        Snap-sandboxed browsers cannot access /tmp/. The file persists until
+        manually deleted. On macOS and Windows, the file is written to the
+        system temp directory and cleaned up by the OS on reboot.
 
         Example:
             >>> df.style().highlight_max(...).show()
         """
-        self.view_html(browser=None)
+        import platform
+        import tempfile
+        import time
+        import webbrowser
+        from pathlib import Path
+
+        html = self.to_html()
+        system = platform.system()
+
+        if system == "Linux":
+            # Snap-packaged Firefox (Ubuntu 22.04+) cannot access /tmp/.
+            # Home directory is accessible from the Snap sandbox.
+            # Note: file is not auto-cleaned; persists until manually removed.
+            tmp_dir = Path.home()
+        else:
+            # macOS: /tmp/ works fine (not Snap-sandboxed).
+            # Windows: %TEMP% is user-owned, accessible to all browsers.
+            tmp_dir = Path(tempfile.gettempdir())
+
+        timestamp = int(time.time())
+        tmp_path = tmp_dir / f"polarise_preview_{timestamp}.html"
+        tmp_path.write_text(html, encoding="utf-8")
+
+        webbrowser.open_new_tab(tmp_path.as_uri())
 
     def _repr_html_(self) -> str:
         """Return HTML representation for Jupyter notebook display.
