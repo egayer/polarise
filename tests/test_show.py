@@ -23,7 +23,7 @@ def test_show_linux_writes_to_home(tmp_path, monkeypatch):
 
     assert len(opened_urls) == 1
     url = opened_urls[0]
-    assert str(tmp_path) in url
+    assert tmp_path.as_posix() in url
     files = list(tmp_path.glob("polarise_preview_*.html"))
     assert len(files) == 1
     file_path = files[0]
@@ -42,7 +42,7 @@ def test_show_macos_writes_to_tmpdir(tmp_path, monkeypatch):
 
     assert len(opened_urls) == 1
     url = opened_urls[0]
-    assert str(tmp_path) in url
+    assert tmp_path.as_posix() in url
     files = list(tmp_path.glob("polarise_preview_*.html"))
     assert len(files) == 1
     assert "<html" in files[0].read_text(encoding="utf-8").lower()
@@ -60,7 +60,7 @@ def test_show_windows_writes_to_tmpdir(tmp_path, monkeypatch):
 
     assert len(opened_urls) == 1
     url = opened_urls[0]
-    assert str(tmp_path) in url
+    assert tmp_path.as_posix() in url
     files = list(tmp_path.glob("polarise_preview_*.html"))
     assert len(files) == 1
     assert "<html" in files[0].read_text(encoding="utf-8").lower()
