@@ -2189,6 +2189,34 @@ Meta &amp; 134.9 &amp; 39.1 &amp; 16.4 &amp; 67 \\
 <p>No parameters.</p>
 <pre><code class="language-python">df.style().gradient(&quot;Revenue&quot;).show()
 </code></pre>
+<p><strong>Platform behavior</strong></p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Preview file location</th>
+<th>Auto-deleted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS</td>
+<td>System temp directory</td>
+<td>On reboot</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>System temp directory</td>
+<td>On reboot</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Home directory (<code>~/polarise_preview_&lt;timestamp&gt;.html</code>)</td>
+<td>Never — delete manually</td>
+</tr>
+</tbody>
+</table>
+<p><em>On Linux, Snap-packaged Firefox (Ubuntu 22.04+) cannot access <code>/tmp/</code>, so polarise writes to your home directory instead. Files accumulate until you delete them.</em></p>
 <blockquote>
 <p><strong>Jupyter users:</strong> You don't need <code>.show()</code>. polarise implements <code>_repr_html_()</code>, so styled tables render automatically when a <code>Styler</code> is the last expression in a cell.</p>
 </blockquote>

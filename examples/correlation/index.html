@@ -995,7 +995,7 @@
 <h1 id="correlation-matrix">Correlation Matrix</h1>
 <p><code>heat_map()</code> is a natural fit for correlation matrices — the symmetric structure and [-1, 1] value range map perfectly onto a divergent colormap, making strong positive and negative correlations immediately visible.</p>
 <p>This example uses Fisher's Iris dataset: 150 samples across 3 species, with 4 numeric features (sepal/petal length and width).</p>
-<pre><code class="language-python">from examples.datasets import get_iris_data
+<pre><code class="language-python">from polarise.datasets import get_iris_data
 df = get_iris_data()
 
 corr_df = df[:, :-1].corr(label='features').with_columns(
