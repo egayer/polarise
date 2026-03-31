@@ -89,7 +89,7 @@ v2 = base.fashion_scientific()
 
 | Method | Output |
 |--------|--------|
-| `.show()` | Opens HTML in default browser |
+| `.show()` | [Opens HTML in default browser](../api/display_export/#show) |
 | `.to_html()` | Returns HTML string |
 | `.to_html("report.html")` | Saves HTML to file |
 | `.to_latex()` | Returns LaTeX booktabs table |

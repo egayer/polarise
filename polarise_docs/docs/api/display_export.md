@@ -178,6 +178,16 @@ No parameters.
 df.style().gradient("Revenue").show()
 ```
 
+**Platform behavior**
+
+| Platform | Preview file location | Auto-deleted |
+|----------|-----------------------|--------------|
+| macOS | System temp directory | On reboot |
+| Windows | System temp directory | On reboot |
+| Linux | Home directory (`~/polarise_preview_<timestamp>.html`) | Never — delete manually |
+
+*On Linux, Snap-packaged Firefox (Ubuntu 22.04+) cannot access `/tmp/`, so polarise writes to your home directory instead. Files accumulate until you delete them.*
+
 > **Jupyter users:** You don't need `.show()`. polarise implements `_repr_html_()`, so styled tables render automatically when a `Styler` is the last expression in a cell.
 
 ---
