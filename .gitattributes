@@ -1,0 +1,3 @@
+polarise_docs/ linguist-documentation
+polarise_docs/docs/snippets/*.html linguist-generated
+polarise_docs/site/ linguist-vendored
