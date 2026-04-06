@@ -1038,13 +1038,16 @@
 
 <h1 id="air-quality">Air Quality</h1>
 <p>Air quality metrics for major world cities: particulate matter, nitrogen dioxide, ozone, and AQI.</p>
-<pre><code class="language-python">from polarise.datasets import get_air_quality_data
+<pre><code class="language-python">import polars as pl
+import polarise
+from polarise.datasets import get_air_quality_data
 df = get_air_quality_data()
 </code></pre>
 <hr />
 <h3 id="aqi-gradient">AQI gradient</h3>
+<p><span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="CET_D12" · built-in or colorcet }</span></p>
 <pre><code class="language-python">(df.style()
-   .gradient(&quot;AQI&quot;, cmap=&quot;heat_2&quot;)
+   .gradient(&quot;AQI&quot;, cmap=&quot;CET_D12&quot;)
    .fashion_minimal()
    .title(&quot;Air Quality Index by City&quot;)
    .show()
@@ -1206,7 +1209,7 @@ body {
 <td class="numeric">13.2</td>
 <td class="numeric">38.4</td>
 <td class="numeric">52.6</td>
-<td class="numeric" style="background-color: #E6853B; color: #FFFFFF;">48</td>
+<td class="numeric" style="background-color: #A1BCCA; color: #FFFFFF;">48</td>
 <td class="numeric">-5.2</td>
 </tr>
 <tr>
@@ -1214,7 +1217,7 @@ body {
 <td class="numeric">11.8</td>
 <td class="numeric">26.1</td>
 <td class="numeric">48.2</td>
-<td class="numeric" style="background-color: #D23E6A; color: #FFFFFF;">42</td>
+<td class="numeric" style="background-color: #00C8FF; color: #FFFFFF;">42</td>
 <td class="numeric">-3.8</td>
 </tr>
 <tr>
@@ -1222,7 +1225,7 @@ body {
 <td class="numeric">9.5</td>
 <td class="numeric">31.7</td>
 <td class="numeric">61.3</td>
-<td class="numeric" style="background-color: #E9B931; color: #000000;">53</td>
+<td class="numeric" style="background-color: #CDAFC8; color: #FFFFFF;">53</td>
 <td class="numeric">1.2</td>
 </tr>
 <tr>
@@ -1230,7 +1233,7 @@ body {
 <td class="numeric">15.7</td>
 <td class="numeric">42.3</td>
 <td class="numeric">55.1</td>
-<td class="numeric" style="background-color: #E1E6BC; color: #000000;">58</td>
+<td class="numeric" style="background-color: #EC9EE3; color: #FFFFFF;">58</td>
 <td class="numeric">-2.1</td>
 </tr>
 <tr>
@@ -1238,7 +1241,7 @@ body {
 <td class="numeric">12.1</td>
 <td class="numeric">35.8</td>
 <td class="numeric">44.8</td>
-<td class="numeric" style="background-color: #DE6454; color: #FFFFFF;">45</td>
+<td class="numeric" style="background-color: #73C3E4; color: #FFFFFF;">45</td>
 <td class="numeric">-4.5</td>
 </tr>
 </tbody>
@@ -1449,9 +1452,10 @@ body {
 
 <hr />
 <h3 id="change-since-2015">Change since 2015</h3>
+<p><span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="managua_r" · built-in or cmcrameri }</span></p>
 <pre><code class="language-python">(df.style()
-   .gradient_divergent(&quot;Change_vs_2015&quot;, center=0.0, cmap=&quot;vik&quot;)
-   .bar(&quot;AQI&quot;, fill=&quot;steelblue&quot;)
+   .gradient_divergent(&quot;Change_vs_2015&quot;, center=5.0, cmap=&quot;managua_r&quot;)
+   .bar(&quot;AQI&quot;, fill=&quot;lightgreen&quot;)
    .fashion_zebra()
    .title(&quot;Air Quality Change Since 2015&quot;)
    .show()
@@ -1611,40 +1615,40 @@ body {
 <td class="numeric">13.2</td>
 <td class="numeric">38.4</td>
 <td class="numeric">52.6</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 82%, transparent 82%, transparent 100%);">48</td>
-<td class="numeric" style="background-color: #042744; color: #FFFFFF;">-5.2</td>
+<td class="numeric" style="background: linear-gradient(90deg, #90EE90 0%, #90EE90 82%, transparent 82%, transparent 100%);">48</td>
+<td class="numeric" style="background-color: #81E7FF; color: #000000;">-5.2</td>
 </tr>
 <tr>
 <td>Berlin</td>
 <td class="numeric">11.8</td>
 <td class="numeric">26.1</td>
 <td class="numeric">48.2</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 72%, transparent 72%, transparent 100%);">42</td>
-<td class="numeric" style="background-color: #3D5D89; color: #FFFFFF;">-3.8</td>
+<td class="numeric" style="background: linear-gradient(90deg, #90EE90 0%, #90EE90 72%, transparent 72%, transparent 100%);">42</td>
+<td class="numeric" style="background-color: #74C4EA; color: #FFFFFF;">-3.8</td>
 </tr>
 <tr>
 <td>Madrid</td>
 <td class="numeric">9.5</td>
 <td class="numeric">31.7</td>
 <td class="numeric">61.3</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 91%, transparent 91%, transparent 100%);">53</td>
-<td class="numeric" style="background-color: #9D0300; color: #FFFFFF;">1.2</td>
+<td class="numeric" style="background: linear-gradient(90deg, #90EE90 0%, #90EE90 91%, transparent 91%, transparent 100%);">53</td>
+<td class="numeric" style="background-color: #505D9C; color: #FFFFFF;">1.2</td>
 </tr>
 <tr>
 <td>Rome</td>
 <td class="numeric">15.7</td>
 <td class="numeric">42.3</td>
 <td class="numeric">55.1</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 100%, transparent 100%, transparent 100%);">58</td>
-<td class="numeric" style="background-color: #8DA5CA; color: #FFFFFF;">-2.1</td>
+<td class="numeric" style="background: linear-gradient(90deg, #90EE90 0%, #90EE90 100%, transparent 100%, transparent 100%);">58</td>
+<td class="numeric" style="background-color: #669ED2; color: #FFFFFF;">-2.1</td>
 </tr>
 <tr>
 <td>London</td>
 <td class="numeric">12.1</td>
 <td class="numeric">35.8</td>
 <td class="numeric">44.8</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 77%, transparent 77%, transparent 100%);">45</td>
-<td class="numeric" style="background-color: #1F4167; color: #FFFFFF;">-4.5</td>
+<td class="numeric" style="background: linear-gradient(90deg, #90EE90 0%, #90EE90 77%, transparent 77%, transparent 100%);">45</td>
+<td class="numeric" style="background-color: #7AD5F4; color: #000000;">-4.5</td>
 </tr>
 </tbody>
 </table>

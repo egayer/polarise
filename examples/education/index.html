@@ -1038,13 +1038,16 @@
 
 <h1 id="pisa-score">PISA Score</h1>
 <p>OECD PISA 2022 scores measuring 15-year-olds' performance in reading, mathematics, and science.</p>
-<pre><code class="language-python">from polarise.datasets import get_education_data
+<pre><code class="language-python">import polars as pl
+import polarise
+from polarise.datasets import get_education_data
 df = get_education_data()
 </code></pre>
 <hr />
 <h3 id="heatmap-across-all-scores">Heatmap across all scores</h3>
+<p><span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="Mint" · colorspace }</span></p>
 <pre><code class="language-python">(df.style()
-   .heat_map([&quot;Reading&quot;, &quot;Math&quot;, &quot;Science&quot;], cmap=&quot;mint&quot;)
+   .heat_map([&quot;Reading&quot;, &quot;Math&quot;, &quot;Science&quot;], cmap=&quot;Mint&quot;)
    .fashion_scientific()
    .caption(&quot;Table 1: OECD PISA 2022 Scores by Country&quot;)
    .show()
@@ -1219,37 +1222,37 @@ body {
 <tbody>
 <tr>
 <td>Estonia</td>
-<td class="numeric" style="background-color: #A4D1BE; color: #000000;">511</td>
-<td class="numeric" style="background-color: #A1CFBB; color: #000000;">510</td>
-<td class="numeric" style="background-color: #DFF1E6; color: #000000;">526</td>
+<td class="numeric" style="background-color: #A4D1BD; color: #000000;">511</td>
+<td class="numeric" style="background-color: #A1CFBC; color: #000000;">510</td>
+<td class="numeric" style="background-color: #E0F2E6; color: #000000;">526</td>
 <td class="numeric">27.9</td>
 </tr>
 <tr>
 <td>Ireland</td>
-<td class="numeric" style="background-color: #B6DDC9; color: #000000;">516</td>
-<td class="numeric" style="background-color: #62A599; color: #FFFFFF;">492</td>
-<td class="numeric" style="background-color: #8CC1AF; color: #FFFFFF;">504</td>
+<td class="numeric" style="background-color: #B6DDC8; color: #000000;">516</td>
+<td class="numeric" style="background-color: #61A699; color: #FFFFFF;">492</td>
+<td class="numeric" style="background-color: #8CC2AF; color: #FFFFFF;">504</td>
 <td class="numeric">99.1</td>
 </tr>
 <tr>
 <td>Poland</td>
-<td class="numeric" style="background-color: #579E94; color: #FFFFFF;">489</td>
-<td class="numeric" style="background-color: #579E94; color: #FFFFFF;">489</td>
+<td class="numeric" style="background-color: #579F94; color: #FFFFFF;">489</td>
+<td class="numeric" style="background-color: #579F94; color: #FFFFFF;">489</td>
 <td class="numeric" style="background-color: #ABD6C2; color: #000000;">513</td>
 <td class="numeric">18.7</td>
 </tr>
 <tr>
 <td>Finland</td>
 <td class="numeric" style="background-color: #5AA195; color: #FFFFFF;">490</td>
-<td class="numeric" style="background-color: #43948C; color: #FFFFFF;">484</td>
-<td class="numeric" style="background-color: #A4D1BE; color: #000000;">511</td>
+<td class="numeric" style="background-color: #44948C; color: #FFFFFF;">484</td>
+<td class="numeric" style="background-color: #A4D1BD; color: #000000;">511</td>
 <td class="numeric">53.1</td>
 </tr>
 <tr>
 <td>Netherlands</td>
 <td class="numeric" style="background-color: #005D67; color: #FFFFFF;">459</td>
-<td class="numeric" style="background-color: #65A89A; color: #FFFFFF;">493</td>
-<td class="numeric" style="background-color: #539C92; color: #FFFFFF;">488</td>
+<td class="numeric" style="background-color: #65A89B; color: #FFFFFF;">493</td>
+<td class="numeric" style="background-color: #539D92; color: #FFFFFF;">488</td>
 <td class="numeric">58.3</td>
 </tr>
 </tbody>
@@ -1258,10 +1261,11 @@ body {
 
 <hr />
 <h3 id="best-and-worst-math-scores">Best and worst math scores</h3>
+<p><span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="blues" · built-in }</span></p>
 <pre><code class="language-python">(df.style()
    .highlight_max(&quot;Math&quot;, fill=&quot;gold&quot;)
-   .highlight_min(&quot;Math&quot;, fill=&quot;lightblue&quot;)
-   .gradient(&quot;GDP_per_capita&quot;, cmap=&quot;blues_2&quot;)
+   .highlight_min(&quot;Math&quot;, fill=&quot;alert_orange&quot;)
+   .gradient(&quot;GDP_per_capita&quot;, cmap=&quot;blues&quot;)
    .fashion_minimal()
    .title(&quot;Math Performance vs Wealth&quot;)
    .show()
@@ -1422,35 +1426,35 @@ body {
 <td class="numeric">511</td>
 <td class="numeric" style="background-color: #FFD700; color: #000000;">510</td>
 <td class="numeric">526</td>
-<td class="numeric" style="background-color: #4359A7; color: #FFFFFF;">27.9</td>
+<td class="numeric" style="background-color: #E9F4FF; color: #000000;">27.9</td>
 </tr>
 <tr>
 <td>Ireland</td>
 <td class="numeric">516</td>
 <td class="numeric">492</td>
 <td class="numeric">504</td>
-<td class="numeric" style="background-color: #E1E1E1; color: #000000;">99.1</td>
+<td class="numeric" style="background-color: #0099FF; color: #FFFFFF;">99.1</td>
 </tr>
 <tr>
 <td>Poland</td>
 <td class="numeric">489</td>
 <td class="numeric">489</td>
 <td class="numeric">513</td>
-<td class="numeric" style="background-color: #023EA4; color: #FFFFFF;">18.7</td>
+<td class="numeric" style="background-color: #FFFFFF; color: #000000;">18.7</td>
 </tr>
 <tr>
 <td>Finland</td>
 <td class="numeric">490</td>
-<td class="numeric" style="background-color: #FF6347; color: #FFFFFF;">484</td>
+<td class="numeric" style="background-color: #FF832B; color: #FFFFFF;">484</td>
 <td class="numeric">511</td>
-<td class="numeric" style="background-color: #9199C1; color: #FFFFFF;">53.1</td>
+<td class="numeric" style="background-color: #AFD6FF; color: #000000;">53.1</td>
 </tr>
 <tr>
 <td>Netherlands</td>
 <td class="numeric">459</td>
 <td class="numeric">493</td>
 <td class="numeric">488</td>
-<td class="numeric" style="background-color: #9EA4C6; color: #FFFFFF;">58.3</td>
+<td class="numeric" style="background-color: #A2D0FF; color: #000000;">58.3</td>
 </tr>
 </tbody>
 </table>
@@ -1459,7 +1463,7 @@ body {
 <hr />
 <h3 id="bar-view-across-subjects">Bar view across subjects</h3>
 <pre><code class="language-python">(df.style()
-   .bar(&quot;Reading&quot;).bar(&quot;Math&quot;).bar(&quot;Science&quot;)
+   .bar(&quot;Reading&quot;).bar(&quot;Math&quot;,fill='gold').bar(&quot;Science&quot;, fill='orange')
    .fashion_compact()
    .title(&quot;PISA Scores — Bar View&quot;)
    .show()
@@ -1618,37 +1622,37 @@ body {
 <tbody>
 <tr>
 <td>Estonia</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 99%, transparent 99%, transparent 100%);">511</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 100%, transparent 100%, transparent 100%);">510</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 100%, transparent 100%, transparent 100%);">526</td>
+<td class="numeric" style="background: linear-gradient(90deg, #ADD8E6 0%, #ADD8E6 99%, transparent 99%, transparent 100%);">511</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFD700 0%, #FFD700 100%, transparent 100%, transparent 100%);">510</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFA500 0%, #FFA500 100%, transparent 100%, transparent 100%);">526</td>
 <td class="numeric">27.9</td>
 </tr>
 <tr>
 <td>Ireland</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 100%, transparent 100%, transparent 100%);">516</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 96%, transparent 96%, transparent 100%);">492</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 95%, transparent 95%, transparent 100%);">504</td>
+<td class="numeric" style="background: linear-gradient(90deg, #ADD8E6 0%, #ADD8E6 100%, transparent 100%, transparent 100%);">516</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFD700 0%, #FFD700 96%, transparent 96%, transparent 100%);">492</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFA500 0%, #FFA500 95%, transparent 95%, transparent 100%);">504</td>
 <td class="numeric">99.1</td>
 </tr>
 <tr>
 <td>Poland</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 94%, transparent 94%, transparent 100%);">489</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 95%, transparent 95%, transparent 100%);">489</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 97%, transparent 97%, transparent 100%);">513</td>
+<td class="numeric" style="background: linear-gradient(90deg, #ADD8E6 0%, #ADD8E6 94%, transparent 94%, transparent 100%);">489</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFD700 0%, #FFD700 95%, transparent 95%, transparent 100%);">489</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFA500 0%, #FFA500 97%, transparent 97%, transparent 100%);">513</td>
 <td class="numeric">18.7</td>
 </tr>
 <tr>
 <td>Finland</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 94%, transparent 94%, transparent 100%);">490</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 94%, transparent 94%, transparent 100%);">484</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 97%, transparent 97%, transparent 100%);">511</td>
+<td class="numeric" style="background: linear-gradient(90deg, #ADD8E6 0%, #ADD8E6 94%, transparent 94%, transparent 100%);">490</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFD700 0%, #FFD700 94%, transparent 94%, transparent 100%);">484</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFA500 0%, #FFA500 97%, transparent 97%, transparent 100%);">511</td>
 <td class="numeric">53.1</td>
 </tr>
 <tr>
 <td>Netherlands</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 88%, transparent 88%, transparent 100%);">459</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 96%, transparent 96%, transparent 100%);">493</td>
-<td class="numeric" style="background: linear-gradient(90deg, #4682B4 0%, #4682B4 92%, transparent 92%, transparent 100%);">488</td>
+<td class="numeric" style="background: linear-gradient(90deg, #ADD8E6 0%, #ADD8E6 88%, transparent 88%, transparent 100%);">459</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFD700 0%, #FFD700 96%, transparent 96%, transparent 100%);">493</td>
+<td class="numeric" style="background: linear-gradient(90deg, #FFA500 0%, #FFA500 92%, transparent 92%, transparent 100%);">488</td>
 <td class="numeric">58.3</td>
 </tr>
 </tbody>

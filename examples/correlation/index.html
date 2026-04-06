@@ -995,7 +995,9 @@
 <h1 id="correlation-matrix">Correlation Matrix</h1>
 <p><code>heat_map()</code> is a natural fit for correlation matrices — the symmetric structure and [-1, 1] value range map perfectly onto a divergent colormap, making strong positive and negative correlations immediately visible.</p>
 <p>This example uses Fisher's Iris dataset: 150 samples across 3 species, with 4 numeric features (sepal/petal length and width).</p>
-<pre><code class="language-python">from polarise.datasets import get_iris_data
+<pre><code class="language-python">import polars as pl
+import polarise
+from polarise.datasets import get_iris_data
 df = get_iris_data()
 
 corr_df = df[:, :-1].corr(label='features').with_columns(
@@ -1004,8 +1006,9 @@ corr_df = df[:, :-1].corr(label='features').with_columns(
 </code></pre>
 <hr />
 <h3 id="correlation-matrix_1">Correlation matrix</h3>
+<p><span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="CET_L19" · built-in or colorcet }</span></p>
 <pre><code class="language-python">(corr_df.style()
-        .heat_map(exclude='features', cmap='bam')
+        .heat_map(exclude='features', cmap='CET_L19')
         .footnote('source : UCI Machine Learning Repository — Fisher\'s Iris dataset')
         .fashion_grid()
         .show()
@@ -1157,31 +1160,31 @@ body {
 <tbody>
 <tr>
 <td>sepal_length</td>
-<td class="numeric" style="background-color: #990000; color: #FFFFFF;">1.0</td>
-<td class="numeric" style="background-color: #6991AE; color: #FFFFFF;">-0.12</td>
-<td class="numeric" style="background-color: #BA3513; color: #FFFFFF;">0.87</td>
-<td class="numeric" style="background-color: #C44C29; color: #FFFFFF;">0.82</td>
+<td class="numeric" style="background-color: #D0210E; color: #FFFFFF;">1.0</td>
+<td class="numeric" style="background-color: #C3DFFE; color: #000000;">-0.12</td>
+<td class="numeric" style="background-color: #E32747; color: #FFFFFF;">0.87</td>
+<td class="numeric" style="background-color: #E73159; color: #FFFFFF;">0.82</td>
 </tr>
 <tr>
 <td>sepal_width</td>
-<td class="numeric" style="background-color: #6991AE; color: #FFFFFF;">-0.12</td>
-<td class="numeric" style="background-color: #990000; color: #FFFFFF;">1.0</td>
-<td class="numeric" style="background-color: #033D66; color: #FFFFFF;">-0.43</td>
-<td class="numeric" style="background-color: #154D75; color: #FFFFFF;">-0.37</td>
+<td class="numeric" style="background-color: #C3DFFE; color: #000000;">-0.12</td>
+<td class="numeric" style="background-color: #D0210E; color: #FFFFFF;">1.0</td>
+<td class="numeric" style="background-color: #FEFFFF; color: #000000;">-0.43</td>
+<td class="numeric" style="background-color: #F1F9FD; color: #000000;">-0.37</td>
 </tr>
 <tr>
 <td>petal_length</td>
-<td class="numeric" style="background-color: #BA3513; color: #FFFFFF;">0.87</td>
-<td class="numeric" style="background-color: #033D66; color: #FFFFFF;">-0.43</td>
-<td class="numeric" style="background-color: #990000; color: #FFFFFF;">1.0</td>
-<td class="numeric" style="background-color: #A30F02; color: #FFFFFF;">0.96</td>
+<td class="numeric" style="background-color: #E32747; color: #FFFFFF;">0.87</td>
+<td class="numeric" style="background-color: #FEFFFF; color: #000000;">-0.43</td>
+<td class="numeric" style="background-color: #D0210E; color: #FFFFFF;">1.0</td>
+<td class="numeric" style="background-color: #D62222; color: #FFFFFF;">0.96</td>
 </tr>
 <tr>
 <td>petal_width</td>
-<td class="numeric" style="background-color: #C44C29; color: #FFFFFF;">0.82</td>
-<td class="numeric" style="background-color: #154D75; color: #FFFFFF;">-0.37</td>
-<td class="numeric" style="background-color: #A30F02; color: #FFFFFF;">0.96</td>
-<td class="numeric" style="background-color: #990000; color: #FFFFFF;">1.0</td>
+<td class="numeric" style="background-color: #E73159; color: #FFFFFF;">0.82</td>
+<td class="numeric" style="background-color: #F1F9FD; color: #000000;">-0.37</td>
+<td class="numeric" style="background-color: #D62222; color: #FFFFFF;">0.96</td>
+<td class="numeric" style="background-color: #D0210E; color: #FFFFFF;">1.0</td>
 </tr>
 </tbody>
 </table>

@@ -1038,13 +1038,16 @@
 
 <h1 id="wellbeing">Wellbeing</h1>
 <p>National wellbeing indicators: life expectancy, healthcare spending, life satisfaction, and work hours.</p>
-<pre><code class="language-python">from polarise.datasets import get_wellbeing_data
+<pre><code class="language-python">import polars as pl
+import polarise
+from polarise.datasets import get_wellbeing_data
 df = get_wellbeing_data()
 </code></pre>
 <hr />
 <h3 id="wellbeing-heatmap">Wellbeing heatmap</h3>
+<p><span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="hawaii" · built-in or cmcrameri }</span></p>
 <pre><code class="language-python">(df.style()
-   .heat_map([&quot;Life_Expectancy&quot;, &quot;Healthcare_Pct_GDP&quot;, &quot;Life_Satisfaction&quot;], cmap=&quot;mint&quot;)
+   .heat_map([&quot;Life_Expectancy&quot;, &quot;Healthcare_Pct_GDP&quot;, &quot;Life_Satisfaction&quot;], cmap=&quot;hawaii&quot;)
    .fashion_minimal()
    .title(&quot;Wellbeing Indicators by Country&quot;)
    .show()
@@ -1202,37 +1205,37 @@ body {
 <tbody>
 <tr>
 <td>Spain</td>
-<td class="numeric" style="background-color: #DFF1E6; color: #000000;">83.3</td>
-<td class="numeric" style="background-color: #006169; color: #FFFFFF;">9.1</td>
-<td class="numeric" style="background-color: #005E67; color: #FFFFFF;">7.1</td>
+<td class="numeric" style="background-color: #B3F1FC; color: #000000;">83.3</td>
+<td class="numeric" style="background-color: #8E126A; color: #FFFFFF;">9.1</td>
+<td class="numeric" style="background-color: #8D0670; color: #FFFFFF;">7.1</td>
 <td class="numeric">1641</td>
 </tr>
 <tr>
 <td>Italy</td>
-<td class="numeric" style="background-color: #DEF1E4; color: #000000;">82.9</td>
-<td class="numeric" style="background-color: #006169; color: #FFFFFF;">9.0</td>
-<td class="numeric" style="background-color: #005D67; color: #FFFFFF;">6.5</td>
+<td class="numeric" style="background-color: #AFF1FC; color: #000000;">82.9</td>
+<td class="numeric" style="background-color: #8E126A; color: #FFFFFF;">9.0</td>
+<td class="numeric" style="background-color: #8B0273; color: #FFFFFF;">6.5</td>
 <td class="numeric">1723</td>
 </tr>
 <tr>
 <td>France</td>
-<td class="numeric" style="background-color: #DCF0E3; color: #000000;">82.5</td>
-<td class="numeric" style="background-color: #00666C; color: #FFFFFF;">11.3</td>
-<td class="numeric" style="background-color: #005D67; color: #FFFFFF;">6.8</td>
+<td class="numeric" style="background-color: #ACF1FB; color: #000000;">82.5</td>
+<td class="numeric" style="background-color: #901D63; color: #FFFFFF;">11.3</td>
+<td class="numeric" style="background-color: #8D0471; color: #FFFFFF;">6.8</td>
 <td class="numeric">1511</td>
 </tr>
 <tr>
 <td>Sweden</td>
-<td class="numeric" style="background-color: #DFF1E5; color: #000000;">83.1</td>
-<td class="numeric" style="background-color: #00656C; color: #FFFFFF;">10.9</td>
-<td class="numeric" style="background-color: #005E68; color: #FFFFFF;">7.4</td>
+<td class="numeric" style="background-color: #B1F1FC; color: #000000;">83.1</td>
+<td class="numeric" style="background-color: #8F1B64; color: #FFFFFF;">10.9</td>
+<td class="numeric" style="background-color: #8D076F; color: #FFFFFF;">7.4</td>
 <td class="numeric">1452</td>
 </tr>
 <tr>
 <td>Germany</td>
-<td class="numeric" style="background-color: #D9EFE1; color: #000000;">81.7</td>
-<td class="numeric" style="background-color: #00666C; color: #FFFFFF;">11.7</td>
-<td class="numeric" style="background-color: #005E67; color: #FFFFFF;">7.0</td>
+<td class="numeric" style="background-color: #A5F0F8; color: #000000;">81.7</td>
+<td class="numeric" style="background-color: #901E62; color: #FFFFFF;">11.7</td>
+<td class="numeric" style="background-color: #8D0571; color: #FFFFFF;">7.0</td>
 <td class="numeric">1349</td>
 </tr>
 </tbody>
@@ -1241,10 +1244,11 @@ body {
 
 <hr />
 <h3 id="best-and-worst-life-expectancy">Best and worst life expectancy</h3>
+<p><span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="orange-to-purple" · built-in }</span></p>
 <pre><code class="language-python">(df.style()
    .highlight_max(&quot;Life_Expectancy&quot;, fill=&quot;lightgreen&quot;)
    .highlight_min(&quot;Life_Expectancy&quot;, fill=&quot;lightblue&quot;)
-   .gradient(&quot;Life_Satisfaction&quot;, cmap=&quot;peach&quot;)
+   .gradient(&quot;Life_Satisfaction&quot;, cmap=&quot;orange-to-purple&quot;)
    .fashion_grid()
    .show()
  )
@@ -1397,35 +1401,35 @@ body {
 <td>Spain</td>
 <td class="numeric" style="background-color: #90EE90; color: #000000;">83.3</td>
 <td class="numeric">9.1</td>
-<td class="numeric" style="background-color: #F8B78D; color: #000000;">7.1</td>
+<td class="numeric" style="background-color: #C4539F; color: #FFFFFF;">7.1</td>
 <td class="numeric">1641</td>
 </tr>
 <tr>
 <td>Italy</td>
 <td class="numeric">82.9</td>
 <td class="numeric">9.0</td>
-<td class="numeric" style="background-color: #EA4B3A; color: #FFFFFF;">6.5</td>
+<td class="numeric" style="background-color: #EB7923; color: #FFFFFF;">6.5</td>
 <td class="numeric">1723</td>
 </tr>
 <tr>
 <td>France</td>
 <td class="numeric">82.5</td>
 <td class="numeric">11.3</td>
-<td class="numeric" style="background-color: #F3875B; color: #FFFFFF;">6.8</td>
+<td class="numeric" style="background-color: #D76661; color: #FFFFFF;">6.8</td>
 <td class="numeric">1511</td>
 </tr>
 <tr>
 <td>Sweden</td>
 <td class="numeric">83.1</td>
 <td class="numeric">10.9</td>
-<td class="numeric" style="background-color: #F9DDC3; color: #000000;">7.4</td>
+<td class="numeric" style="background-color: #AF41DD; color: #FFFFFF;">7.4</td>
 <td class="numeric">1452</td>
 </tr>
 <tr>
 <td>Germany</td>
-<td class="numeric" style="background-color: #FF6347; color: #FFFFFF;">81.7</td>
+<td class="numeric" style="background-color: #ADD8E6; color: #000000;">81.7</td>
 <td class="numeric">11.7</td>
-<td class="numeric" style="background-color: #F7A87B; color: #FFFFFF;">7.0</td>
+<td class="numeric" style="background-color: #CA598A; color: #FFFFFF;">7.0</td>
 <td class="numeric">1349</td>
 </tr>
 </tbody>
