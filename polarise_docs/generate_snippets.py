@@ -63,27 +63,148 @@ def save(name: str, html: str) -> None:
 
 # ── Color reference ────────────────────────────────────────────────────────────
 
-def gen_color_reference():
-    src = os.path.join(ROOT, "Documentation", "color_reference.html")
-    with open(src, encoding="utf-8") as f:
-        html = f.read()
+def gen_color_fixed():
+    from polarise.utils.colors import CSS_COLORS
 
-    # Extract body content only — CSS lives in extra.css under .pol-color-ref
-    # so no <style> tag is injected into the page content (which disrupts layout).
-    body_match = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL)
-    body = body_match.group(1).strip() if body_match else html
+    alert_colors = {k: v for k, v in CSS_COLORS.items() if k.startswith("alert_")}
+    css_colors   = {k: v for k, v in CSS_COLORS.items() if not k.startswith("alert_")}
 
-    # Remove the standalone-page .container wrapper div
-    body = re.sub(r'<div\s+class="container">', '', body, count=1)
-    if body.rstrip().endswith('</div>'):
-        body = body.rstrip()[:-6].rstrip()
+    lines = []
 
-    fragment = f'<div class="pol-color-ref">{body}</div>'
+    lines += [
+        '<h3>IBM Carbon Alerts</h3>',
+        '<p class="category-description">Status and alert colors from IBM Carbon Design System</p>',
+        '<div class="color-grid">',
+        '',
+    ]
+    for name, hex_val in alert_colors.items():
+        lines += [
+            '<div class="color-item">',
+            f'    <div class="color-swatch" style="background:{hex_val};"></div>',
+            f'    <div class="color-name">{name}</div>',
+            f'    <div class="color-hex">{hex_val}</div>',
+            '</div>',
+            '',
+        ]
+    lines += [
+        '</div>',
+        '<h3>CSS Standard</h3>',
+        '<p class="category-description">Standard CSS/web colors</p>',
+        '<div class="color-grid">',
+        '',
+    ]
+    for name, hex_val in css_colors.items():
+        lines += [
+            '<div class="color-item">',
+            f'    <div class="color-swatch" style="background:{hex_val};"></div>',
+            f'    <div class="color-name">{name}</div>',
+            f'    <div class="color-hex">{hex_val}</div>',
+            '</div>',
+            '',
+        ]
+    lines += ['</div>', '']
 
-    path = os.path.join(OUT, "color_reference_body.html")
+    body = '\n'.join(lines)
+    fragment = f'<div class="pol-color-ref">\n\n{body}\n</div>'
+    path = os.path.join(OUT, "color_fixed.html")
     with open(path, "w", encoding="utf-8") as f:
         f.write(fragment)
-    print("  ✓ color_reference_body.html")
+    print("  ✓ color_fixed.html")
+
+
+def gen_color_cmaps():
+    from polarise.utils.colormaps import BUILTIN_CMAPS
+
+    CMAP_SECTIONS = [
+        {
+            "title": "built-in · selected from cmcrameri",
+            "paired": [
+                ("Sequential", ["hawaii", "acton", "nuuk", "lipari", "davos", "buda"]),
+                ("Divergent",  ["vik", "managua"]),
+            ],
+        },
+        {
+            "title": "built-in · selected from colorcet",
+            "paired": [
+                ("Sequential", ["CET_L20", "CET_L19", "CET_L17"]),
+                ("Divergent",  ["CET_D11", "CET_D12", "CET_I3"]),
+            ],
+        },
+        {
+            "side_by_side": [
+                ("built-in · selected from matplotlib",   ["viridis", "plasma"]),
+                ("built-in · selected from Diane Simoni", ["orange-to-purple"]),
+            ],
+        },
+        {
+            "title": "Custom Single-Hue",
+            "single": ["grays", "reds", "blues", "greens"],
+        },
+    ]
+
+    def stops_to_discrete_cells(stops, n=11):
+        cells = []
+        for i in range(n):
+            idx = round(i * (len(stops) - 1) / (n - 1))
+            r, g, b = stops[idx]
+            cells.append(f"#{int(r*255):02X}{int(g*255):02X}{int(b*255):02X}")
+        return cells
+
+    def render_swatch_row(cmap_names):
+        row = ['<div class="cmap-swatch-row">', '']
+        for name in cmap_names:
+            if name not in BUILTIN_CMAPS:
+                continue
+            hex_colors = stops_to_discrete_cells(BUILTIN_CMAPS[name], n=11)
+            cell_html = '\n'.join(
+                f'        <div class="cmap-cell" style="background:{c};"></div>'
+                for c in hex_colors
+            )
+            row += [
+                '    <div class="cmap-swatch-item">',
+                '        <div class="cmap-swatch-col">',
+                cell_html,
+                '        </div>',
+                f'        <div class="cmap-swatch-label">{name}</div>',
+                '    </div>',
+                '',
+            ]
+        row.append('</div>')
+        return row
+
+    lines = []
+    for section in CMAP_SECTIONS:
+        if "paired" in section:
+            lines.append(f'<h3>{section["title"]}</h3>')
+            lines.append('<div class="cmap-family-row">')
+            for sublabel, cmap_names in section["paired"]:
+                lines += [
+                    '<div class="cmap-family-col">',
+                    f'<div class="cmap-subfamily-label">{sublabel}</div>',
+                ]
+                lines += render_swatch_row(cmap_names)
+                lines.append('</div>')
+            lines.append('</div>')
+        elif "side_by_side" in section:
+            lines.append('<div class="cmap-triple-row">')
+            for title, cmap_names in section["side_by_side"]:
+                lines += [
+                    '<div class="cmap-family-col">',
+                    f'<h3>{title}</h3>',
+                ]
+                lines += render_swatch_row(cmap_names)
+                lines.append('</div>')
+            lines.append('</div>')
+        elif "single" in section:
+            lines.append(f'<h3>{section["title"]}</h3>')
+            lines += render_swatch_row(section["single"])
+
+    body = '\n'.join(lines)
+    fragment = f'<div class="pol-color-ref">\n\n{body}\n</div>'
+    path = os.path.join(OUT, "color_cmaps.html")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(fragment)
+    print("  ✓ color_cmaps.html")
 
 
 # ── Home hero ──────────────────────────────────────────────────────────────────
@@ -132,7 +253,7 @@ def gen_hero_explore():
     html = (
         df.style()
         .show_info("sales_df")
-        .gradient("growth_pct", cmap="blue_red_2")
+        .gradient("growth_pct", cmap="Blue-Red 2")
         .gradient("rank", color=True, cmap="blues_r")
         .bar("users_m", fill="alert_orange")
         .highlight_when("language", when=pl.col("rank") == 1, then_fill="alert_yellow")
@@ -147,7 +268,7 @@ def gen_hero_presentation():
     html = (
         df.style()
         .title("Top Programming Languages (2025)", "Usage, growth, and compensation overview")
-        .gradient("users_m", cmap="oryel_r", color=True)
+        .gradient("users_m", cmap="OrYel_r", color=True)
         .highlight_when("language", when=pl.col("rank") == 1, then_fill="alert_yellow")
         .highlight_above("salary_usd", value=120000, fill="alert_red")
         .highlight_above("growth_pct", value=10, color="alert_green", fill=False)
@@ -286,7 +407,7 @@ def gen_api_format():
 
 def gen_api_fashion():
     df = datasets.get_education_data()
-    base = df.style().gradient("Math", cmap="blues_2")
+    base = df.style().gradient("Math", cmap="Blues 2")
 
     save("api_fashion_grid_ex1.html",       base.fashion_grid().to_html())
     save("api_fashion_zebra_ex1.html",      base.fashion_zebra().to_html())
@@ -339,7 +460,7 @@ def gen_examples_correlation():
 
     save("examples_correlation_ex1.html",
          corr_df.style()
-                .heat_map(exclude='features', cmap='bam')
+                .heat_map(exclude='features', cmap='CET_L19')
                 .footnote('source: UCI Machine Learning Repository — Fisher\'s Iris dataset')
                 .fashion_grid()
                 .to_html())
@@ -352,14 +473,14 @@ def gen_examples_heatmap():
 
     save("examples_heatmap_ex1.html",
          df.style()
-           .heat_map(exclude='Month', cmap='oryel_r')
+           .heat_map(exclude='Month', cmap='OrYel_r')
            .footnote('source : en.climate-data.org')
            .fashion_grid()
            .to_html())
 
     save("examples_heatmap_ex2.html",
          df.style()
-           .heat_map(exclude='Month', cmap='blue_red_2')
+           .heat_map(exclude='Month', cmap='CET_D11')
            .footnote('source : en.climate-data.org')
            .fashion_grid()
            .to_html())
@@ -373,7 +494,7 @@ def gen_examples_finance():
     # Ex1: gradient on Revenue
     save("examples_finance_ex1.html",
          df.style()
-           .gradient("Revenue", cmap="lapaz")
+           .gradient("Revenue", cmap="reds")
            .fashion_minimal()
            .title("Revenue Distribution")
            .to_html())
@@ -382,7 +503,7 @@ def gen_examples_finance():
     save("examples_finance_ex2.html",
          df.style()
            .highlight_max("Profit", fill="gold")
-           .bar("Revenue", fill="steelblue")
+           .bar("Revenue")
            .fashion_grid()
            .to_html())
 
@@ -403,7 +524,7 @@ def gen_examples_llm():
 
     save("examples_llm_ex1.html",
          df.style()
-           .gradient(["MMLU", "HumanEval", "GPQA"], cmap="viridis")
+           .gradient(["MMLU", "HumanEval", "GPQA"], cmap="imola")
            .fashion_minimal()
            .title("LLM Benchmark Scores")
            .to_html())
@@ -420,8 +541,8 @@ def gen_examples_llm():
 
     save("examples_llm_ex3.html",
          df.style()
-           .gradient_divergent("Cost_per_1M", center=15.0, cmap="vik")
-           .bar("Context_k", fill="steelblue")
+           .gradient_divergent("Cost_per_1M", center=15.0, cmap="managua")
+           .bar("Context_k", fill="lightgreen")
            .fashion_zebra()
            .title("Cost vs Context Window")
            .to_html())
@@ -434,7 +555,7 @@ def gen_examples_education():
 
     save("examples_education_ex1.html",
          df.style()
-           .heat_map(["Reading", "Math", "Science"], cmap="mint")
+           .heat_map(["Reading", "Math", "Science"], cmap="Mint")
            .fashion_scientific()
            .caption("Table 1: OECD PISA 2022 Scores by Country")
            .to_html())
@@ -442,17 +563,15 @@ def gen_examples_education():
     save("examples_education_ex2.html",
          df.style()
            .highlight_max("Math", fill="gold")
-           .highlight_min("Math", fill="#FF6347")
-           .gradient("GDP_per_capita", cmap="blues_2")
+           .highlight_min("Math", fill="alert_orange")
+           .gradient("GDP_per_capita", cmap="blues")
            .fashion_minimal()
            .title("Math Performance vs Wealth")
            .to_html())
 
     save("examples_education_ex3.html",
          df.style()
-           .bar("Reading")
-           .bar("Math")
-           .bar("Science")
+           .bar("Reading").bar("Math", fill='gold').bar("Science", fill='orange')
            .fashion_compact()
            .title("PISA Scores — Bar View")
            .to_html())
@@ -473,7 +592,7 @@ def gen_examples_climate():
 
     save("examples_climate_ex2.html",
          df.style()
-           .gradient("CO2_ppm", cmap="heat_2")
+           .gradient("CO2_ppm", cmap="Heat 2")
            .bar("Temp_Anomaly", fill_pos="#FF6347", fill_neg="steelblue")
            .fashion_grid()
            .title("CO₂ and Temperature Trends")
@@ -495,7 +614,7 @@ def gen_examples_airquality():
 
     save("examples_airquality_ex1.html",
          df.style()
-           .gradient("AQI", cmap="heat_2")
+           .gradient("AQI", cmap="CET_D12")
            .fashion_minimal()
            .title("Air Quality Index by City")
            .to_html())
@@ -511,8 +630,8 @@ def gen_examples_airquality():
 
     save("examples_airquality_ex3.html",
          df.style()
-           .gradient_divergent("Change_vs_2015", center=0.0, cmap="vik")
-           .bar("AQI", fill="steelblue")
+           .gradient_divergent("Change_vs_2015", center=5.0, cmap="managua_r")
+           .bar("AQI", fill="lightgreen")
            .fashion_zebra()
            .title("Air Quality Change Since 2015")
            .to_html())
@@ -526,7 +645,7 @@ def gen_examples_wellbeing():
     save("examples_wellbeing_ex1.html",
          df.style()
            .heat_map(["Life_Expectancy", "Healthcare_Pct_GDP",
-                      "Life_Satisfaction"], cmap="mint")
+                      "Life_Satisfaction"], cmap="hawaii")
            .fashion_minimal()
            .title("Wellbeing Indicators by Country")
            .to_html())
@@ -534,8 +653,8 @@ def gen_examples_wellbeing():
     save("examples_wellbeing_ex2.html",
          df.style()
            .highlight_max("Life_Expectancy", fill="lightgreen")
-           .highlight_min("Life_Expectancy", fill="#FF6347")
-           .gradient("Life_Satisfaction", cmap="peach")
+           .highlight_min("Life_Expectancy", fill="lightblue")
+           .gradient("Life_Satisfaction", cmap="orange-to-purple")
            .fashion_grid()
            .to_html())
 
@@ -561,20 +680,20 @@ def gen_tutorial():
     # Step 2: Add gradient on Revenue
     save("tutorial_step2.html",
          df.style()
-           .gradient("Revenue", cmap="lapaz")
+           .gradient("Revenue", cmap="CET_L19")
            .to_html())
 
     # Step 3: Add highlight on max Profit
     save("tutorial_step3.html",
          df.style()
-           .gradient("Revenue", cmap="lapaz")
+           .gradient("Revenue", cmap="CET_L19")
            .highlight_max("Profit", fill="gold")
            .to_html())
 
     # Step 4: Apply fashion preset
     save("tutorial_step4.html",
          df.style()
-           .gradient("Revenue", cmap="lapaz")
+           .gradient("Revenue", cmap="CET_L19")
            .highlight_max("Profit", fill="gold")
            .fashion_minimal()
            .to_html())
@@ -582,7 +701,7 @@ def gen_tutorial():
     # Step 5: Add title and footnote
     save("tutorial_step5.html",
          df.style()
-           .gradient("Revenue", cmap="lapaz")
+           .gradient("Revenue", cmap="CET_L19")
            .highlight_max("Profit", fill="gold")
            .fashion_minimal()
            .title("Big Tech Financials", subtitle="FY 2023 — Revenue in $B")
@@ -592,7 +711,7 @@ def gen_tutorial():
     # Step 6: Add formatting (final result)
     save("tutorial_step6.html",
          df.style()
-           .gradient("Revenue", cmap="lapaz")
+           .gradient("Revenue", cmap="CET_L19")
            .highlight_max("Profit", fill="gold")
            .fashion_minimal()
            .title("Big Tech Financials", subtitle="FY 2023 — Revenue in $B")
@@ -605,7 +724,8 @@ def gen_tutorial():
 
 if __name__ == "__main__":
     print("Generating polarise documentation snippets...")
-    gen_color_reference()
+    gen_color_fixed()
+    gen_color_cmaps()
     gen_home()
     gen_hero_raw()
     gen_hero_explore()

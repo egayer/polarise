@@ -3,6 +3,8 @@
 Air quality metrics for major world cities: particulate matter, nitrogen dioxide, ozone, and AQI.
 
 ```python
+import polars as pl
+import polarise
 from polarise.datasets import get_air_quality_data
 df = get_air_quality_data()
 ```
@@ -11,9 +13,11 @@ df = get_air_quality_data()
 
 ### AQI gradient
 
+<span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="CET_D12" · built-in or colorcet }</span>
+
 ```python
 (df.style()
-   .gradient("AQI", cmap="heat_2")
+   .gradient("AQI", cmap="CET_D12")
    .fashion_minimal()
    .title("Air Quality Index by City")
    .show()
@@ -43,10 +47,12 @@ df = get_air_quality_data()
 
 ### Change since 2015
 
+<span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="managua_r" · built-in or cmcrameri }</span>
+
 ```python
 (df.style()
-   .gradient_divergent("Change_vs_2015", center=0.0, cmap="vik")
-   .bar("AQI", fill="steelblue")
+   .gradient_divergent("Change_vs_2015", center=5.0, cmap="managua_r")
+   .bar("AQI", fill="lightgreen")
    .fashion_zebra()
    .title("Air Quality Change Since 2015")
    .show()

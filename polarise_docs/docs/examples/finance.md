@@ -3,7 +3,6 @@
 Big Tech company financial data for FY 2023 — revenue, profit, growth rate, and headcount.
 
 ```python
-import sys; sys.path.insert(0, "../")
 import polars as pl
 import polarise
 from polarise.datasets import get_finance_data
@@ -14,11 +13,13 @@ df = get_finance_data()
 
 ### Revenue gradient
 
+<span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="reds" · built-in }</span>
+
 Visualise revenue distribution with a sequential colormap:
 
 ```python
 (df.style()
-   .gradient("Revenue", cmap="lapaz")
+   .gradient("Revenue", cmap="reds")
    .fashion_minimal()
    .title("Revenue Distribution")
    .show()
@@ -34,7 +35,7 @@ Visualise revenue distribution with a sequential colormap:
 ```python
 (df.style()
    .highlight_max("Profit", fill="gold")
-   .bar("Revenue", fill="steelblue")
+   .bar("Revenue")
    .fashion_grid()
    .show()
  )

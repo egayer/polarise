@@ -3,6 +3,8 @@
 Performance metrics for leading large language models across standardised benchmarks.
 
 ```python
+import polars as pl
+import polarise
 from polarise.datasets import get_llm_benchmarks
 df = get_llm_benchmarks()
 ```
@@ -11,9 +13,11 @@ df = get_llm_benchmarks()
 
 ### Multi-column gradient
 
+<span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="imola" · cmcrameri }</span>
+
 ```python
 (df.style()
-   .gradient(["MMLU", "HumanEval", "GPQA"], cmap="viridis")
+   .gradient(["MMLU", "HumanEval", "GPQA"], cmap="imola")
    .fashion_minimal()
    .title("LLM Benchmark Scores")
    .show()
@@ -44,10 +48,12 @@ df = get_llm_benchmarks()
 
 ### Cost vs context window
 
+<span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="managua" · built-in or cmcrameri }</span>
+
 ```python
 (df.style()
-   .gradient_divergent("Cost_per_1M", center=15.0, cmap="vik")
-   .bar("Context_k", fill="steelblue")
+   .gradient_divergent("Cost_per_1M", center=15.0, cmap="managua")
+   .bar("Context_k", fill="lightgreen")
    .fashion_zebra()
    .title("Cost vs Context Window")
    .show()

@@ -3,6 +3,8 @@
 Global climate indicators by decade: temperature anomaly, CO₂ concentration, sea level rise, and Arctic ice extent.
 
 ```python
+import polars as pl
+import polarise
 from polarise.datasets import get_climate_data
 df = get_climate_data()
 ```
@@ -10,6 +12,8 @@ df = get_climate_data()
 ---
 
 ### Temperature anomaly (divergent gradient)
+
+<span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="vik" · built-in or cmcrameri }</span>
 
 ```python
 (df.style()
@@ -27,9 +31,11 @@ df = get_climate_data()
 
 ### CO₂ and temperature bars
 
+<span style="font-size: 0.8rem; font-family: monospace; color: #555555;">{ cmap="Heat 2" · colorspace }</span>
+
 ```python
 (df.style()
-   .gradient("CO2_ppm", cmap="heat_2")
+   .gradient("CO2_ppm", cmap="Heat 2")
    .bar("Temp_Anomaly", fill_pos="#FF6347", fill_neg="steelblue")
    .fashion_grid()
    .title("CO₂ and Temperature Trends")

@@ -4,12 +4,16 @@ This tutorial builds a styled table step by step, adding one feature at a time.
 We use the Big Tech financials dataset throughout.
 
 ```python
-import sys; sys.path.insert(0, "../")
 import polars as pl
 import polarise
-from examples.datasets import get_finance_data
 
-df = get_finance_data()
+df = pl.DataFrame({
+    "Company":     ["Apple", "Microsoft", "Google", "Amazon", "Meta"],
+    "Revenue":     [383.3,   211.9,       307.4,    574.8,    134.9],
+    "Profit":      [ 97.0,    72.4,        73.8,     30.4,     39.1],
+    "Growth":      [  7.8,     6.9,         8.7,     11.8,     16.4],
+    "Employees_k": [  161,     221,         182,     1541,       67],
+})
 ```
 
 ---
@@ -32,7 +36,7 @@ Apply a sequential colormap to the Revenue column:
 
 ```python
 (df.style()
-   .gradient("Revenue", cmap="lapaz")
+   .gradient("Revenue", cmap="CET_L19")
    .show()
  )
 ```
@@ -47,7 +51,7 @@ Chain a `highlight_max` on top of the gradient:
 
 ```python
 (df.style()
-   .gradient("Revenue", cmap="lapaz")
+   .gradient("Revenue", cmap="CET_L19")
    .highlight_max("Profit", fill="gold")
    .show()
  )
@@ -63,7 +67,7 @@ Replace the default style with `fashion_minimal` for a cleaner look:
 
 ```python
 (df.style()
-   .gradient("Revenue", cmap="lapaz")
+   .gradient("Revenue", cmap="CET_L19")
    .highlight_max("Profit", fill="gold")
    .fashion_minimal()
    .show()
@@ -78,7 +82,7 @@ Replace the default style with `fashion_minimal` for a cleaner look:
 
 ```python
 (df.style()
-   .gradient("Revenue", cmap="lapaz")
+   .gradient("Revenue", cmap="CET_L19")
    .highlight_max("Profit", fill="gold")
    .fashion_minimal()
    .title("Big Tech Financials", subtitle="FY 2023 — Revenue in $B")
@@ -97,7 +101,7 @@ Apply format strings to clean up the display:
 
 ```python
 (df.style()
-   .gradient("Revenue", cmap="lapaz")
+   .gradient("Revenue", cmap="CET_L19")
    .highlight_max("Profit", fill="gold")
    .fashion_minimal()
    .title("Big Tech Financials", subtitle="FY 2023 — Revenue in $B")

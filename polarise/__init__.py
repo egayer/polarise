@@ -29,7 +29,7 @@ Incorrect workflow (undefined behavior):
     >>> df = df.with_columns(...)  # DON'T modify after styling!
 """
 
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 __author__ = "Eric Gayer"
 __license__ = "GPL-3.0"
 

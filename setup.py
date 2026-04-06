@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="polarise",
-    version="1.0.1",
+    version="1.1.0",
     author="Eric Gayer",
     description="A polars-native DataFrame styling package for HTML export",
     long_description=long_description,

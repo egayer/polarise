@@ -588,7 +588,7 @@ class Styler:
         in_col: Any,
         scope: Literal["column", "table"] = "column",
         color: str | None = None,
-        fill: str = "steelblue",
+        fill: str = "lightblue",
         fill_pos: str | None = None,
         fill_neg: str | None = None,
         exclude: list[str] | str | None = None
